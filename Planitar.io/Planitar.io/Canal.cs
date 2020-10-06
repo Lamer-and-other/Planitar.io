@@ -73,7 +73,9 @@ namespace Planitar.io
         
         public void getMessage(byte[] data)
         {
-            string answer = Encoding.Default.GetString(data); 
+            int size = BitConverter.ToInt32(data, 0); 
+            string answer = Encoding.Default.GetString(data, 4, size); 
+        
             getsomemessage(answer);  
         }
     }

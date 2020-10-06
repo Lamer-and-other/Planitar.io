@@ -22,6 +22,7 @@ namespace PlanitarioServer
             int sizeMessage = BitConverter.ToInt32(data, 0);
             string message = Encoding.Default.GetString(data, 4, sizeMessage);
             
+            
             byte[] answerMessage = Encoding.Default.GetBytes("Your message has been recieve at Server");
             byte[] lanswerMessage = BitConverter.GetBytes(answerMessage.Length);
             byte[] answer = lcommand.Concat(command.Concat(lanswerMessage.Concat(answerMessage))).ToArray();

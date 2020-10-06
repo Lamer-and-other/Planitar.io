@@ -34,9 +34,9 @@
             // 
             // buttonSendMessage
             // 
-            this.buttonSendMessage.Location = new System.Drawing.Point(332, 299);
+            this.buttonSendMessage.Location = new System.Drawing.Point(330, 292);
             this.buttonSendMessage.Name = "buttonSendMessage";
-            this.buttonSendMessage.Size = new System.Drawing.Size(145, 23);
+            this.buttonSendMessage.Size = new System.Drawing.Size(281, 23);
             this.buttonSendMessage.TabIndex = 0;
             this.buttonSendMessage.Text = "GetSomeMessage";
             this.buttonSendMessage.UseVisualStyleBackColor = true;
@@ -44,9 +44,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(332, 248);
+            this.textBox1.Location = new System.Drawing.Point(330, 249);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 20);
+            this.textBox1.Size = new System.Drawing.Size(281, 20);
             this.textBox1.TabIndex = 1;
             // 
             // Form1
