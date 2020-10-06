@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Planetario
 {
-    class Trap
+    class Food
     {
-        // Размер рандомный исходя из файла GameConst
+        int   Bonus;    // Сколько получит пользователь за эту еду; Размер еды зависит от бонуса
         Point Position; // Позиция ловушки
         Color Color;    // Цвет ловушки
     }
