@@ -9,17 +9,17 @@ namespace Planetario
     static class GameConst
     {
         
-        static float PlayerMaxSpeed = 3.0f;     // Максимальная скорость игрока
-        static float PlayerMinSpeed = 1.0f;     // Минимальная скорость игрока
-        static float PlayerMinMapScale = 1.0f;  // Минимальный масштаб игрока
-        static ulong PlayerMinScore = 10;       // Начальное количество очков у игрока 
+        static public float PlayerMaxSpeed = 3.0f;     // Максимальная скорость игрока
+        static public float PlayerMinSpeed = 1.0f;     // Минимальная скорость игрока
+        static public float PlayerMinMapScale = 1.0f;  // Минимальный масштаб игрока
+        static public ulong PlayerMinScore = 10;       // Начальное количество очков у игрока 
 
-        static int FoodMaxBonus = 2;    // Максимальный бонус за еду
-        static int FoodMinBonus = 1;    // Минимальный бонус за еду
-        static int FoodMaxOnMap = 15;   // Максимальное количество еды на карте
+        static public int FoodMaxBonus = 2;    // Максимальный бонус за еду
+        static public int FoodMinBonus = 0;    // Минимальный бонус за еду
+        static public int FoodMaxOnMap = 15;   // Максимальное количество еды на карте
 
-        static int TrapMaxSize = 3;     // Максимальный размер ловушки на карте
-        static int TrapMinSize = 1;     // Минимальный размер ловушки на карте
-        static int TrapMaxOnMap = 15;   // Максимальное количество ловушек на карте
+        static public int TrapMaxSize = 3;     // Максимальный размер ловушки на карте
+        static public int TrapMinSize = 1;     // Минимальный размер ловушки на карте
+        static public int TrapMaxOnMap = 15;   // Максимальное количество ловушек на карте
     }
 }

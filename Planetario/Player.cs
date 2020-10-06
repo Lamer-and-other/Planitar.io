@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Shapes;
 
 namespace Planetario
 {
@@ -14,9 +13,6 @@ namespace Planetario
         string  Nickname;       // Ник игрока
         ulong   Score;          // Счёт игрока
         ulong   Record;         // Рекорд игрока
-
-        Ellipse Collise; 
-
     }
     class CurrentPlayer
     {

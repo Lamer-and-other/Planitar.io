@@ -12,9 +12,15 @@ namespace Planetario
 {
     public partial class MainForm : Form
     {
+        Map map;
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            map = new Map();
         }
     }
 }
