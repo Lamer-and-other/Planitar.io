@@ -1,0 +1,6 @@
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\bin\Debug\PlanitarioServer.exe.config
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\bin\Debug\PlanitarioServer.exe
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\bin\Debug\PlanitarioServer.pdb
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Debug\PlanitarioServer.csprojResolveAssemblyReference.cache
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Debug\PlanitarioServer.exe
+C:\Users\10730.ITSTEP\Desktop\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Debug\PlanitarioServer.pdb
