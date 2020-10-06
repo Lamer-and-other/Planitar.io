@@ -35,6 +35,11 @@ namespace Planitar.io
             byte[] request = command.Concat(lmessage.Concat(message)).ToArray();
             canal.sendCommand(request); 
         }
-
+        
+        public void Disconnect()
+        {
+            byte[] command = buildCommand("CLOSE");
+            canal.sendCommand(command); 
+        }
     }
 }

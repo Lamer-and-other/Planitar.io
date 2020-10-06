@@ -94,7 +94,7 @@ namespace PlanitarioServer
         {
             bool isStop = false;
             TcpClient client = (tcpClient as TcpClient);
-            NetworkStream stream = client.GetStream();
+            NetworkStream stream = client.GetStream(); 
             
             Player player = new Player("SomeNick");
             
@@ -113,24 +113,26 @@ namespace PlanitarioServer
                     servermeesage(getTime() + $"Client send message");
                     // получаем комманду 
                     string command = protocol.parseCommand(buffer);
-                    if (command == "REGISTRATION")
-                    {
-                        //MyService.registration(ref player);
-                        //Player.playerList.Add(player);
-                        //Room.roomList[0].AddPlayer(player);
-                        continue;
-                    }
+                    //if (command == "REGISTRATION")
+                    //{
+                    //    MyService.registration(ref player);
+                    //    Player.playerList.Add(player); 
+                    //    Room.roomList[0].AddPlayer(player);
+                    //    continue;
+                    //} 
                     if (command == "CLOSE")
                     {
-                        isStop = true;
+                        isStop = true; 
                         player.service.stream.Close();
-                        client.Close();
+                        client.Close(); 
                         break;
                     }
-
-                    // выполняем действие с учётом парсинга для оттделением заголовка 
+                    
+                    // выполняем действие с учётом парсинга заголовка полученого пакета
+                    // и получаем ответный пакет   
                     byte[] answer = protocol.getMethod(command)(protocol.parseData(buffer));
-                    byte[] size = BitConverter.GetBytes(answer.Length);                    
+                    byte[] size = BitConverter.GetBytes(answer.Length);  
+                    // отправляем ответ клиету                   
                     stream.Write(size, 0, size.Length);
                     stream.Write(answer, 0, answer.Length);
                 }

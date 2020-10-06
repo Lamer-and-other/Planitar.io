@@ -38,7 +38,7 @@ namespace Planitar.io
             th.IsBackground = true;
             th.Start();
         }
-
+        
         public void sendCommand(byte[] data) 
         {
             byte[] banswer = new byte[4];

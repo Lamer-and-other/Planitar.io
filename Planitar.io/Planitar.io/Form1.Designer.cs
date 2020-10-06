@@ -38,7 +38,7 @@
             this.buttonSendMessage.Name = "buttonSendMessage";
             this.buttonSendMessage.Size = new System.Drawing.Size(281, 23);
             this.buttonSendMessage.TabIndex = 0;
-            this.buttonSendMessage.Text = "GetSomeMessage";
+            this.buttonSendMessage.Text = "GetSomeMessageFromServer";
             this.buttonSendMessage.UseVisualStyleBackColor = true;
             this.buttonSendMessage.Click += new System.EventHandler(this.buttonSendMessage_Click);
             // 
@@ -58,6 +58,7 @@
             this.Controls.Add(this.buttonSendMessage);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
