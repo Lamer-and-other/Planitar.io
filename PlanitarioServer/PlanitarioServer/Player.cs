@@ -18,15 +18,15 @@ namespace PlanitarioServer
 
         public uint id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
-        public ulong Score { set; get; }            // Счёт игрока
-        public ulong Record { set; get; }           // Рекорд игрока
+        public ulong Score = 0;          // Счёт игрока
+        public ulong Record = 0;           // Рекорд игрока
         public bool isAlive = false;                // жив ли игрок 
-        
-        public float MapScale { set; get; }         // Текущий масштаб карты
-        public float Speed { set; get; }            // Текущая скорость игрока
-        
-        public bool BonusSpeed { set; get; }         // Включено ли ускорение у игрока
 
+        public float MapScale = 0;         // Текущий масштаб карты
+        public float Speed = 1;            // Текущая скорость игрока
+
+        public bool BonusSpeed = false;        // Включено ли ускорение у игрока
+        
         public uint LostScoresOnStep { set; get; }   // Количество очков которые мы теряем, например каждые 5 
 
         public Point Position { set; get; }       // Позиция игрока
