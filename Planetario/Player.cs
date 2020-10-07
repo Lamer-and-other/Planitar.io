@@ -14,6 +14,7 @@ namespace Planetario
         ulong   Score;          // Счёт игрока
         ulong   Record;         // Рекорд игрока
     }
+
     class CurrentPlayer
     {
         Player ThisPlayer;    // Текущий игрок

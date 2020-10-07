@@ -12,30 +12,20 @@ namespace Planetario
         int   Bonus;    // Сколько получит пользователь за эту еду; Размер еды зависит от бонуса
         Point Position; // Позиция ловушки
         Color Color;    // Цвет ловушки
+        Rectangle ellips;
         
         public Food(Random r,Size mapSize)
         {
-            Bonus = RandBonus(r);
-            Position = RandPosition(r,mapSize);
-            Color = RandColor(r);
+            Bonus = r.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
+            Position = new Point(r.Next(0, mapSize.Width), r.Next(0, mapSize.Height));
+            Color = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
+            ellips = new Rectangle(Position, new Size(Bonus + 10, Bonus + 10));
         }
 
-        int RandBonus(Random r)
+        public void Paint(Graphics g)
         {
-            int number = r.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
-            return number;
-        }
-
-        Point RandPosition(Random r, Size mapSize)
-        {
-            Point pos = new Point(r.Next(0,mapSize.Width),r.Next(0, mapSize.Height));
-            return pos;
-        } 
-
-        Color RandColor(Random r)
-        {
-            Color col = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
-            return col;
+            g.FillEllipse(new SolidBrush(Color), ellips);
+            g.DrawEllipse(new Pen(Color.Black), ellips);
         }
     }
 }

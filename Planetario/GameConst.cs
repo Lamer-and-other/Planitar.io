@@ -8,7 +8,9 @@ namespace Planetario
 {
     static class GameConst
     {
-        
+        static public int MaxWidthMap = 2000;
+        static public int MaxHeightMap = 2000;
+
         static public float PlayerMaxSpeed = 3.0f;     // Максимальная скорость игрока
         static public float PlayerMinSpeed = 1.0f;     // Минимальная скорость игрока
         static public float PlayerMinMapScale = 1.0f;  // Минимальный масштаб игрока
