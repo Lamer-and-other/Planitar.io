@@ -27,13 +27,22 @@ namespace Planitar.io
             return fullCommand;
         }
 
-        public void sendSomeMessage()
+        public void connectToServer()
         {
-            byte[] command = buildCommand("SENDTESTMESSAGE"); 
+            byte[] command = buildCommand("CONNECT"); 
             byte[] message = Encoding.Default.GetBytes("I want connect to server! Please! I have to let me in"); 
             byte[] lmessage = BitConverter.GetBytes(message.Length); 
-            byte[] request = command.Concat(lmessage.Concat(message)).ToArray();
+            byte[] request = command.Concat(lmessage.Concat(message)).ToArray(); 
             canal.sendCommand(request); 
+        }
+
+        public void changeNickName(string newName)
+        {
+            byte[] command = buildCommand("EDITNICK"); 
+            byte[] message = Encoding.Default.GetBytes(newName); 
+            byte[] lmessage = BitConverter.GetBytes(message.Length);
+            byte[] request = command.Concat(lmessage.Concat(message)).ToArray();
+            canal.sendCommand(request);
         }
         
         public void Disconnect()

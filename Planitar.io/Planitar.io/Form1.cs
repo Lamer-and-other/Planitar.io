@@ -24,19 +24,23 @@ namespace Planitar.io
             Canal canal = new Canal("127.0.0.1", 2020); 
             ms = new MyService(canal);
             ms.SetDelegats(getSomeMessage); 
-            timer.Interval = 1;
+            timer.Interval = 1; 
             timer.Tick += _Tick;
-            timer.Start(); 
+            //timer.Start();
+            ms.connectToServer();
         }
       
         public void _Tick(object o, EventArgs e)
         {
-
+            timer.Stop(); 
         }
 
         private void buttonSendMessage_Click(object sender, EventArgs e)
-        {           
-            ms.sendSomeMessage();        
+        {
+            if(NameBox.Text.Count() != 0)
+            {
+                ms.changeNickName(NameBox.Text); 
+            }
         }
         
         public void getSomeMessage(string message)
@@ -48,7 +52,7 @@ namespace Planitar.io
             
             BeginInvoke(new MethodInvoker(delegate
             {
-                this.textBox1.Text = message; 
+                this.NameBox.Text = message; 
             }));           
         }
 

@@ -15,7 +15,8 @@ namespace PlanitarioServer
         public static Protocol createProtocol(MyService ms)
         {
             Protocol protocol = new Protocol();
-            protocol.addCommand("SENDTESTMESSAGE", ms.chekServer);
+            protocol.addCommand("CONNECT", ms.clientConnection);
+            protocol.addCommand("EDITNICK", ms.changeNickName);
             //protocol.addCommand("CLOSE", ms.chekServer);
             return protocol;
         }

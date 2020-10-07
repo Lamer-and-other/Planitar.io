@@ -54,20 +54,23 @@ namespace Planitar.io
 
         public void getAnswer()
         {
-            try
+            while (true)
             {
-                byte[] banswer = new byte[4];
-                stream.Read(banswer, 0, banswer.Length);
-                int size = BitConverter.ToInt32(banswer, 0);
-                banswer = new byte[size];
-                stream.Read(banswer, 0, banswer.Length);
-                string answerCommand = protocol.parseCommand(banswer);
-                protocol.getMethod(answerCommand)(protocol.parseData(banswer));
-                
-            }
-            catch (Exception ex)
-            {
-                getsomemessage(ex.ToString());
+                try
+                {
+                    byte[] banswer = new byte[4];
+                    stream.Read(banswer, 0, banswer.Length);
+                    int size = BitConverter.ToInt32(banswer, 0); 
+                    banswer = new byte[size];
+                    stream.Read(banswer, 0, banswer.Length);
+                    string answerCommand = protocol.parseCommand(banswer);
+                    protocol.getMethod(answerCommand)(protocol.parseData(banswer));
+
+                }
+                catch (Exception ex)
+                {
+                    getsomemessage(ex.ToString());
+                }
             }
         }
         

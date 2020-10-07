@@ -35,11 +35,15 @@ namespace PlanitarioServer
         public MyService service = new MyService(); // класс для расшифровки-обработки полученый от клиента данных   
         //Ellipse Collise;
 
-        public Player(string Nickname)
+        public Player()
         {
-            this.Nickname = Nickname;
+            this.Nickname = GetSoneNick();
         }
         
+        public static string GetSoneNick()
+        {
+            return "Player" + (playerList.Count + 1); 
+        }
     }
 
 }

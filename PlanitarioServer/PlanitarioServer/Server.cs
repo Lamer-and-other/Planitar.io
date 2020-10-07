@@ -96,9 +96,11 @@ namespace PlanitarioServer
             TcpClient client = (tcpClient as TcpClient);
             NetworkStream stream = client.GetStream(); 
             
-            Player player = new Player("SomeNick");
+            Player player = new Player();
+            player.service.myself = player; 
+            player.service.stream = stream; 
+            Player.playerList.Add(player); 
             
-            player.service.stream = stream;
             //player.service.Subscribe(UpdataPublisher.publisher);
             
             Protocol protocol = Protocol.createProtocol(player.service);
