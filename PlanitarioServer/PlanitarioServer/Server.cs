@@ -30,7 +30,7 @@ namespace PlanitarioServer
                 tcpl.Start();
 
                 TcpClient client = null;
-                servermeesage(getTime() + "Server start");
+                servermeesage(getTime() + "Server start"); 
                 while (true)
                 {
                     client = tcpl.AcceptTcpClient();
@@ -112,16 +112,10 @@ namespace PlanitarioServer
                 byte[] buffer = new byte[10000];
                 while ((i = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    servermeesage(getTime() + $"Client send message");
+                    
                     // получаем комманду 
                     string command = protocol.parseCommand(buffer);
-                    //if (command == "REGISTRATION")
-                    //{
-                    //    MyService.registration(ref player);
-                    //    Player.playerList.Add(player); 
-                    //    Room.roomList[0].AddPlayer(player);
-                    //    continue;
-                    //} 
+                    servermeesage(getTime() + $"Client send command: {command}"); 
                     if (command == "CLOSE")
                     {
                         isStop = true; 
