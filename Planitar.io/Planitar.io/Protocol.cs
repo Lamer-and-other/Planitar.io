@@ -17,6 +17,7 @@ namespace Planitar.io
 
             Protocol protocol = new Protocol();
             protocol.addCommand("GETSOMENICK", c.getMessage);
+            protocol.addCommand("GET_CHANGED_DATA", c.newData); 
             return protocol;
         }
         

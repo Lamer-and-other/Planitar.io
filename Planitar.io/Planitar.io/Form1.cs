@@ -12,6 +12,8 @@ using System.Timers;
 namespace Planitar.io
 {
     delegate void messages(string message);
+    delegate void reDrawing(int someData); 
+        
     public delegate void InvokePrintMessages(string m);
 
     public partial class Form1 : Form
@@ -23,7 +25,7 @@ namespace Planitar.io
             InitializeComponent();
             Canal canal = new Canal("127.0.0.1", 2020); 
             ms = new MyService(canal);
-            ms.SetDelegats(getSomeMessage); 
+            ms.SetDelegats(getSomeMessage, setNewData); 
             timer.Interval = 1; 
             timer.Tick += _Tick;
             //timer.Start();
@@ -55,10 +57,23 @@ namespace Planitar.io
                 this.NameBox.Text = message; 
             }));           
         }
+        
+        public void setNewData(int someData)
+        {
+            BeginInvoke(new MethodInvoker(delegate
+            {
+                this.label1.Text = someData.ToString(); 
+            }));
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             ms.Disconnect(); 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ms.chekNotify(); 
         }
     }
 }

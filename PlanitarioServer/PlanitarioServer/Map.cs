@@ -13,6 +13,7 @@ namespace PlanitarioServer
         List<Player> Players;
         List<Food>   Foods;
         List<Trap>   Traps;
+        public static Publisher globalPublisher = new Publisher(); 
 
         void AddPlayer(Player player)
         {

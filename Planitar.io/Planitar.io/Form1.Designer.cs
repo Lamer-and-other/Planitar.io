@@ -31,6 +31,8 @@
             this.buttonSendMessage = new System.Windows.Forms.Button();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.WellcomePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.WellcomePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,12 +59,33 @@
             // WellcomePanel
             // 
             this.WellcomePanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.WellcomePanel.Controls.Add(this.label1);
+            this.WellcomePanel.Controls.Add(this.button1);
             this.WellcomePanel.Controls.Add(this.NameBox);
             this.WellcomePanel.Controls.Add(this.buttonSendMessage);
             this.WellcomePanel.Location = new System.Drawing.Point(193, 117);
             this.WellcomePanel.Name = "WellcomePanel";
             this.WellcomePanel.Size = new System.Drawing.Size(835, 361);
             this.WellcomePanel.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(606, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(217, 38);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Проверить уведомление игроков";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
             // 
             // Form1
             // 
@@ -84,6 +107,8 @@
         private System.Windows.Forms.Button buttonSendMessage;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.Panel WellcomePanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

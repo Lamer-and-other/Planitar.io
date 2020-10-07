@@ -33,14 +33,27 @@ namespace PlanitarioServer
         public Color Color { set; get; }         // Цвет игрока
         
         public MyService service = new MyService(); // класс для расшифровки-обработки полученый от клиента данных   
-        //Ellipse Collise;
+      
 
-        public Player()
+        Rectangle ellipce = new Rectangle(); 
+
+        public Player(Publisher publisher)
         {
             this.id = getNewId(); 
             this.Nickname = GetSoneNick();
+            Subscribe(publisher); 
+        } 
+        // подписка на событие изменения данных 
+        public void Subscribe(Publisher publisher)
+        {
+            publisher.addEventHandler(service.testSendDataChange); 
         }
-        // аолучаем новый ник при запуске 
+        // отписка от события изменения данных 
+        public void Unsubscribe(Publisher publisher)
+        {
+            publisher.removeEventHandler(service.testSendDataChange); 
+        }
+        // получаем новый ник при запуске 
         public static string GetSoneNick()
         {
             return "Player" + (playerList.Count + 1); 
@@ -63,6 +76,13 @@ namespace PlanitarioServer
             }
             return id;
         }
+        
+
+        public void testFuncForChanges(byte[] data)
+        {
+            
+        }
+        
     }
 
 }

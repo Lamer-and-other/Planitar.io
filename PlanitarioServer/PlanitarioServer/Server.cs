@@ -96,7 +96,7 @@ namespace PlanitarioServer
             TcpClient client = (tcpClient as TcpClient);
             NetworkStream stream = client.GetStream(); 
             
-            Player player = new Player();
+            Player player = new Player(Map.globalPublisher); 
             player.service.myself = player; 
             player.service.stream = stream; 
             Player.playerList.Add(player); 
@@ -120,6 +120,7 @@ namespace PlanitarioServer
                     {
                         isStop = true; 
                         player.service.stream.Close();
+                        player.Unsubscribe(Map.globalPublisher); 
                         client.Close(); 
                         break;
                     }
@@ -127,10 +128,13 @@ namespace PlanitarioServer
                     // выполняем действие с учётом парсинга заголовка полученого пакета
                     // и получаем ответный пакет   
                     byte[] answer = protocol.getMethod(command)(protocol.parseData(buffer));
-                    byte[] size = BitConverter.GetBytes(answer.Length);  
-                    // отправляем ответ клиету                   
-                    stream.Write(size, 0, size.Length);
-                    stream.Write(answer, 0, answer.Length);
+                    if (answer != null)
+                    {
+                        byte[] size = BitConverter.GetBytes(answer.Length);
+                        // отправляем ответ клиету                   
+                        stream.Write(size, 0, size.Length);
+                        stream.Write(answer, 0, answer.Length); 
+                    }
                 }
             }
             while (isStop == false);

@@ -21,7 +21,7 @@ namespace Planitar.io
         Protocol protocol;
         
         public messages getsomemessage;
-
+        public reDrawing reDraw; 
         public bool isClosed = false;
         public Canal() { }
         public Canal(string server, int port)
@@ -62,7 +62,7 @@ namespace Planitar.io
                     stream.Read(banswer, 0, banswer.Length);
                     int size = BitConverter.ToInt32(banswer, 0); 
                     banswer = new byte[size];
-                    stream.Read(banswer, 0, banswer.Length);
+                    stream.Read(banswer, 0, banswer.Length); 
                     string answerCommand = protocol.parseCommand(banswer);
                     protocol.getMethod(answerCommand)(protocol.parseData(banswer));
 
@@ -80,6 +80,12 @@ namespace Planitar.io
             string answer = Encoding.Default.GetString(data, 4, size); 
         
             getsomemessage(answer);  
+        }
+
+        public void newData(byte[] data) 
+        {
+            int number = BitConverter.ToInt32(data, 0);
+            reDraw(number);  
         }
     }
 }

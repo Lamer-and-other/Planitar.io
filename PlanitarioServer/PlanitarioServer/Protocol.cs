@@ -17,6 +17,7 @@ namespace PlanitarioServer
             Protocol protocol = new Protocol();
             protocol.addCommand("CONNECT", ms.clientConnection);
             protocol.addCommand("EDITNICK", ms.changeNickName);
+            protocol.addCommand("DATANOTIFY", ms.notifyAboutChanges);
             //protocol.addCommand("CLOSE", ms.chekServer);
             return protocol;
         }

@@ -49,5 +49,28 @@ namespace PlanitarioServer
             myself.Nickname = newNick;
             return getByteName();  
         }
+
+        Random rand; 
+        public byte[] notifyAboutChanges(byte[] data)
+        {
+            rand = new Random(); 
+            int randomNumber = rand.Next(1, 1000);
+            byte[] byteNumber = BitConverter.GetBytes(randomNumber);
+            byte[] sizeByteNumber = BitConverter.GetBytes(4);
+            
+            byte[] command = buildCommand("GET_CHANGED_DATA"); 
+            byte[] answer = command.Concat(byteNumber).ToArray(); 
+            Map.globalPublisher.notify(answer);
+            return null;  
+        }
+
+        public void testSendDataChange(byte[] data)
+        {           
+            byte[] size = BitConverter.GetBytes(data.Length);
+            // отправляем ответ клиету                   
+            stream.Write(size, 0, 4); 
+            stream.Write(data, 0, data.Length); 
+            
+        }
     }
 }
