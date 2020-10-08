@@ -4,18 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Shapes;
 
 namespace Planetario
 {
     class Player
     {
-        uint    Id;             // Ид игрока
-        string  Nickname;       // Ник игрока
-        ulong   Score;          // Счёт игрока
+        public uint    Id;             // Ид игрока
+        public string  Nickname;       // Ник игрока
+        public ulong   Score;          // Счёт игрока
         ulong   Record;         // Рекорд игрока
 
-        Ellipse Collise; 
+        Rectangle Collise; 
 
     }
     class CurrentPlayer

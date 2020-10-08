@@ -10,7 +10,7 @@ namespace Planetario
     class Map
     {
         Size         MapSize;
-        List<Player> Players;
+        public List<Player> Players;
         List<Food>   Foods;
         List<Trap>   Traps;
 
