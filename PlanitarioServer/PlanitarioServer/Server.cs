@@ -99,7 +99,7 @@ namespace PlanitarioServer
             Player player = new Player(Map.globalPublisher); 
             player.service.myself = player; 
             player.service.stream = stream; 
-            Player.playerList.Add(player); 
+            Map.AddPlayer(player); 
             
             //player.service.Subscribe(UpdataPublisher.publisher);
             
@@ -120,7 +120,8 @@ namespace PlanitarioServer
                     {
                         isStop = true; 
                         player.service.stream.Close();
-                        player.Unsubscribe(Map.globalPublisher); 
+                        player.Unsubscribe(Map.globalPublisher);
+                        Map.RemovePlayer(player); 
                         client.Close(); 
                         break;
                     }

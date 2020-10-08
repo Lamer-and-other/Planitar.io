@@ -13,10 +13,13 @@ namespace Planitar.io
         {
             this.canal = canal; 
         }
-        public void SetDelegats(messages msg, reDrawing reDraw)
+        public void SetDelegats(identification idt, reName rnm, reDrawing reDraw, updataPlayerList upl)
         {
-            canal.getsomemessage = msg;
-            canal.reDraw = reDraw; 
+            canal.mySelfIndentity = idt;
+            canal.reSetName = rnm;
+            canal.reDraw = reDraw;
+            canal.updateplayerlist = upl; 
+
         }
         
         // формирование комманды 
@@ -41,14 +44,21 @@ namespace Planitar.io
         {
             byte[] command = buildCommand("EDITNICK"); 
             byte[] message = Encoding.Default.GetBytes(newName); 
-            byte[] lmessage = BitConverter.GetBytes(message.Length);
+            byte[] lmessage = BitConverter.GetBytes(message.Length); 
             byte[] request = command.Concat(lmessage.Concat(message)).ToArray();
+            canal.sendCommand(request);
+        }
+
+        public void getPlayers()
+        {
+            byte[] command = buildCommand("GETPLAYERS");
+            byte[] request = command; 
             canal.sendCommand(request);
         }
 
         public void chekNotify()
         {
-            byte[] command = buildCommand("DATANOTIFY");
+            byte[] command = buildCommand("DATANOTIFY"); 
             byte[] request = command; 
             canal.sendCommand(request);
         }

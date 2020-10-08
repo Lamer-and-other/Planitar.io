@@ -10,18 +10,19 @@ namespace PlanitarioServer
     class Map
     {
         Size         MapSize;
-        List<Player> Players;
+        public static List<Player> Players = new List<Player>(); 
         List<Food>   Foods;
         List<Trap>   Traps;
-        public static Publisher globalPublisher = new Publisher(); 
-
-        void AddPlayer(Player player)
+        // static потому что карта у нас будет одна и можно пока так оставить 
+        public static Publisher globalPublisher = new Publisher();  
+        
+        public static void AddPlayer(Player player)
         {
-
+            Players.Add(player); 
         }
-        void RemovePlayer(uint id)
+        public static void RemovePlayer(Player player)
         {
-
+            Players.Remove(player);
         }
     }
 }

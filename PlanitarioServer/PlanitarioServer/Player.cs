@@ -14,7 +14,7 @@ namespace PlanitarioServer
       
     class Player
     {
-        public static List<Player> playerList = new List<Player>();
+        //public static List<Player> playerList = new List<Player>();
 
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
@@ -41,22 +41,22 @@ namespace PlanitarioServer
         {
             this.id = getNewId(); 
             this.Nickname = GetSoneNick();
-            Subscribe(publisher); 
+            Subscribe(publisher);  
         } 
         // подписка на событие изменения данных 
         public void Subscribe(Publisher publisher)
         {
-            publisher.addEventHandler(service.testSendDataChange); 
+            publisher.addEventHandler(service.notifySender);
         }
         // отписка от события изменения данных 
-        public void Unsubscribe(Publisher publisher)
+        public void Unsubscribe(Publisher pc)
         {
-            publisher.removeEventHandler(service.testSendDataChange); 
+            pc.removeEventHandler(service.notifySender); 
         }
         // получаем новый ник при запуске 
         public static string GetSoneNick()
         {
-            return "Player" + (playerList.Count + 1); 
+            return "Player" + (Map.Players.Count + 1); 
         }
 
         public int getNewId()
@@ -68,8 +68,8 @@ namespace PlanitarioServer
         public static int idGeneration() 
         {
             Random rand = new Random();
-            int id = rand.Next(1, 1000000); 
-            foreach (Player p in Player.playerList)
+            int id = rand.Next(1, 1000000);
+            foreach (Player p in Map.Players)
             {
                 if (p.id == id)
                     idGeneration(); 

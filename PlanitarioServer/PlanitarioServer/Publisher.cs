@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 namespace PlanitarioServer
 {
     class Publisher
-    {
-        public static Publisher publisher = new Publisher();
-        
+    {        
         // делегат, служит как "форма" для события отправки 
         public delegate void updata(byte[] data); 
         //  событиt отправки 
-        event updata updataSenderEvent;
+        event updata updataSenderEvent; 
         // функция для добавление методов которые активируются после вызова события  
         public void addEventHandler(updata handler)
         {
@@ -25,9 +23,13 @@ namespace PlanitarioServer
             updataSenderEvent -= handler;
         }
         // запуск события 
-        public void notify(byte[] message)
+        public void notify(byte[] data)
         {
-            updataSenderEvent(message);
+            updataSenderEvent(data);
         }
     }
+
+    // набор издателей(под разные цели) 
+ 
+    
 }

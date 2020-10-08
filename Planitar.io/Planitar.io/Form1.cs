@@ -11,9 +11,11 @@ using System.Timers;
 
 namespace Planitar.io
 {
-    delegate void messages(string message);
-    delegate void reDrawing(int someData); 
-        
+    delegate void identification(int id, string name);
+    delegate void reName(string newName);
+    delegate void reDrawing(int someData);
+    delegate void updataPlayerList();
+    
     public delegate void InvokePrintMessages(string m);
 
     public partial class Form1 : Form
@@ -25,11 +27,12 @@ namespace Planitar.io
             InitializeComponent();
             Canal canal = new Canal("127.0.0.1", 2020); 
             ms = new MyService(canal);
-            ms.SetDelegats(getSomeMessage, setNewData); 
+            ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList); 
             timer.Interval = 1; 
             timer.Tick += _Tick;
             //timer.Start();
             ms.connectToServer();
+            
         }
       
         public void _Tick(object o, EventArgs e)
@@ -41,30 +44,55 @@ namespace Planitar.io
         {
             if(NameBox.Text.Count() != 0)
             {
-                ms.changeNickName(NameBox.Text); 
+                ms.changeNickName(NameBox.Text);  
+
             }
         }
-        
-        public void getSomeMessage(string message)
+
+        public void resetName(string newName)
         {
-            //this.BeginInvoke((Action)(() =>
-            //{
-            //    this.textBox1.Text = message; 
-            //}));
-            
+            Player.myseft.Nickname = newName;
             BeginInvoke(new MethodInvoker(delegate
             {
-                this.NameBox.Text = message; 
-            }));           
+                this.NameBox.Text = Player.myseft.Nickname;
+            }));
+            
+        } 
+        public void selfIdentity(int id, string name) 
+        {
+            Player.myseft = new Player(id, name);
+                
+            BeginInvoke(new MethodInvoker(delegate
+            {
+                this.NameBox.Text = Player.myseft.Nickname; 
+            }));
+            ms.getPlayers();
         }
         
         public void setNewData(int someData)
         {
             BeginInvoke(new MethodInvoker(delegate
             {
-                this.label1.Text = someData.ToString(); 
+                this.label1.Text = someData.ToString();  
             }));
         }
+
+        public void getPlayerList()
+        {
+            foreach (Player p in Player.playerList) 
+                PlayerList.Items.Add(p.Nickname + ":" + p.Record); 
+        }
+        
+        public void updataPlayerList()
+        {            
+            BeginInvoke(new MethodInvoker(delegate
+            {
+                PlayerList.Items.Clear();
+                foreach (Player p in Player.playerList)
+                    PlayerList.Items.Add("id: " + p.id.ToString() + " - " + p.Nickname);
+            }));
+          
+        } 
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -74,6 +102,11 @@ namespace Planitar.io
         private void button1_Click(object sender, EventArgs e)
         {
             ms.chekNotify(); 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ms.getPlayers();
         }
     }
 }
