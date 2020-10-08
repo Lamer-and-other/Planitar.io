@@ -18,7 +18,7 @@ namespace Planetario
 
         static public int FoodMaxBonus = 2;    // Максимальный бонус за еду
         static public int FoodMinBonus = 0;    // Минимальный бонус за еду
-        static public int FoodMaxOnMap = 15;   // Максимальное количество еды на карте
+        static public int FoodMaxOnMap = 150;   // Максимальное количество еды на карте
 
         static public int TrapMaxSize = 3;     // Максимальный размер ловушки на карте
         static public int TrapMinSize = 1;     // Минимальный размер ловушки на карте

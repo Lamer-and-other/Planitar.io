@@ -20,20 +20,20 @@ namespace Planetario
         {
             MapSize = new Size(GameConst.MaxWidthMap,GameConst.MaxHeightMap);
             AddFood();
-            //AddTrap();
+            AddTrap();
         }
 
-        /*void AddTrap()
+        void AddTrap()
         {
             if (Traps.Count == 0)
             {
                 for (int i = 0; i < GameConst.FoodMaxOnMap; i++)
                 {
-                    Trap f = new Trap(r, MapSize);
-                    Trap.Add(f);
+                    Trap t = new Trap();
+                    Traps.Add(t);
                 }
             }
-        }*/
+        }
 
         void AddFood()
         {
