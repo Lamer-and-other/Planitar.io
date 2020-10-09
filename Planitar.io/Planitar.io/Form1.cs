@@ -34,21 +34,18 @@ namespace Planitar.io
             ms.connectToServer();
             
         }
-      
-        public void _Tick(object o, EventArgs e)
+        // идентификация 
+        public void selfIdentity(int id, string name)
         {
-            timer.Stop(); 
-        }
-
-        private void buttonSendMessage_Click(object sender, EventArgs e)
-        {
-            if(NameBox.Text.Count() != 0)
+            Player.myseft = new Player(id, name);
+            Player.oldName = name;
+            BeginInvoke(new MethodInvoker(delegate
             {
-                ms.changeNickName(NameBox.Text);  
-
-            }
-        }
-
+                this.NameBox.Text = Player.myseft.Nickname;
+            }));        
+            ms.getPlayers(); 
+        }       
+        // переименовка игрока на клиенте  
         public void resetName(string newName)
         {
             Player.myseft.Nickname = newName;
@@ -56,33 +53,34 @@ namespace Planitar.io
             {
                 this.NameBox.Text = Player.myseft.Nickname;
             }));
-            
-        } 
-        public void selfIdentity(int id, string name) 
-        {
-            Player.myseft = new Player(id, name);
-                
-            BeginInvoke(new MethodInvoker(delegate
-            {
-                this.NameBox.Text = Player.myseft.Nickname; 
-            }));
             ms.getPlayers();
         }
-        
+
+        // кнопка "В бой" 
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+            NameBox.Text = NameBox.Text.Replace(" ", "_");
+            if (NameBox.Text != Player.oldName)
+            {
+                if (NameBox.Text.Count() != 0)
+                {
+                    ms.changeNickName(NameBox.Text); 
+                }
+            }
+            //  
+            // тут старт игры
+            //
+        }
+        // пестовое изменение значения        
         public void setNewData(int someData)
         {
             BeginInvoke(new MethodInvoker(delegate
             {
-                this.label1.Text = someData.ToString();  
+                this.labelChekNotifyLable.Text = someData.ToString();  
             }));
-        }
-
-        public void getPlayerList()
-        {
-            foreach (Player p in Player.playerList) 
-                PlayerList.Items.Add(p.Nickname + ":" + p.Record); 
-        }
+        }       
         
+        // обновление списка игроков 
         public void updataPlayerList()
         {            
             BeginInvoke(new MethodInvoker(delegate
@@ -99,14 +97,22 @@ namespace Planitar.io
             ms.Disconnect(); 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ms.chekNotify(); 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        // тестовая проверка получения игроков 
+        private void getPlayerByHandButton_Click(object sender, EventArgs e)
         {
             ms.getPlayers();
         }
+        // тестовая проверка получения новых значений для остальных игроков 
+        private void chekNotifyButton_Click(object sender, EventArgs e)
+        {
+            ms.chekNotify();
+        }
+
+        public void _Tick(object o, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

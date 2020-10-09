@@ -21,25 +21,19 @@ namespace PlanitarioServer
         public ulong Score = 0;          // Счёт игрока
         public ulong Record = 0;           // Рекорд игрока
         public bool isAlive = false;                // жив ли игрок 
-
         public float MapScale = 0;         // Текущий масштаб карты
-        public float Speed = 1;            // Текущая скорость игрока
-        
-        public bool BonusSpeed = false;        // Включено ли ускорение у игрока
-        
+        public float Speed = 1;            // Текущая скорость игрока       
+        public bool BonusSpeed = false;        // Включено ли ускорение у игрока      
         public uint LostScoresOnStep { set; get; }   // Количество очков которые мы теряем, например каждые 5 
-
         public Point Position { set; get; }       // Позиция игрока
         public Color Color { set; get; }         // Цвет игрока
+        Rectangle ellipce = new Rectangle();
+
+        public MyService service = new MyService(); // класс для расшифровки-обработки полученый от клиента данных            
         
-        public MyService service = new MyService(); // класс для расшифровки-обработки полученый от клиента данных   
-      
-
-        Rectangle ellipce = new Rectangle(); 
-
         public Player(Publisher publisher)
         {
-            this.id = getNewId(); 
+            this.id = idGeneration(); 
             this.Nickname = GetSoneNick();
             Subscribe(publisher);  
         } 
@@ -52,37 +46,28 @@ namespace PlanitarioServer
         public void Unsubscribe(Publisher pc)
         {
             pc.removeEventHandler(service.notifySender); 
-        }
+        } 
         // получаем новый ник при запуске 
         public static string GetSoneNick()
         {
             return "Player" + (Map.Players.Count + 1); 
         }
-
-        public int getNewId()
-        {
-            return idGeneration(); 
-        }
-        
+     
         // генерация уникального id, рекурсивным обходом для проверки уникальности сгенерированного id 
         public static int idGeneration() 
         {
             Random rand = new Random();
             int id = rand.Next(1, 1000000);
-            foreach (Player p in Map.Players)
+            foreach (Player p in Map.Players) 
             {
                 if (p.id == id)
                     idGeneration(); 
             }
             return id;
-        }
-        
+        }       
 
-        public void testFuncForChanges(byte[] data)
-        {
-            
-        }
-        
+      
+
     }
 
 }

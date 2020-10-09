@@ -23,6 +23,7 @@ namespace PlanitarioServer
             byte[] fullCommand = lcommand.Concat(command).ToArray();
             return fullCommand;
         }
+        // подключение игрока  
         public byte[] clientConnection(byte[] data)
         {                      
             // получаем данные отправленные пользователем 
@@ -39,6 +40,7 @@ namespace PlanitarioServer
             byte[] answer = command.Concat(lanswerMessage.Concat(id.Concat(answerMessage))).ToArray();
             return answer;
         }
+        // переименовка игрока на сервере   
         public byte[] changeNickName(byte[] data)
         {
             int sizeMessage = BitConverter.ToInt32(data, 0);
@@ -52,7 +54,7 @@ namespace PlanitarioServer
             return answer; 
         }
 
-
+        // получение списка игроков 
         public byte[] getPlayers(byte[] data)
         {            
             byte[] command = buildCommand("GETPLAYERS");
@@ -70,7 +72,7 @@ namespace PlanitarioServer
         }
 
         
-        
+        // тестовое уведомление об изменениях 
         public byte[] notifyAboutChanges(byte[] data)
         {
             Random rand = new Random(); 
@@ -84,6 +86,7 @@ namespace PlanitarioServer
             return null;  
         }
         
+        // отправка даных всем "подписчикам"  
         public void notifySender(byte[] data) 
         {           
             byte[] size = BitConverter.GetBytes(data.Length);

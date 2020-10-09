@@ -12,6 +12,7 @@ namespace Planitar.io
         public static List<Player> playerList = new List<Player>();
         // игрок текущего клиента 
         public static Player myseft { set; get; } 
+        public static string oldName { set; get; }
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
         public ulong Score = 0;          // Счёт игрока
