@@ -31,13 +31,13 @@
             this.actionButton = new System.Windows.Forms.Button();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.WellcomePanel = new System.Windows.Forms.Panel();
-            this.getPlayerByHandButton = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.labelChekNotifyLable = new System.Windows.Forms.Label();
+            this.getPlayerByHandButton = new System.Windows.Forms.Button();
             this.chekNotifyButton = new System.Windows.Forms.Button();
             this.PlayerList = new System.Windows.Forms.ListBox();
             this.testPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.labelPersonalRecord = new System.Windows.Forms.Label();
-            this.labelName = new System.Windows.Forms.Label();
             this.WellcomePanel.SuspendLayout();
             this.testPanel.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +57,10 @@
             // 
             this.NameBox.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NameBox.Location = new System.Drawing.Point(220, 145);
-            this.NameBox.Multiline = true;
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(402, 37);
             this.NameBox.TabIndex = 1;
+            this.NameBox.TextChanged += new System.EventHandler(this.NameBox_TextChanged);
             // 
             // WellcomePanel
             // 
@@ -74,15 +74,15 @@
             this.WellcomePanel.Size = new System.Drawing.Size(844, 355);
             this.WellcomePanel.TabIndex = 2;
             // 
-            // getPlayerByHandButton
+            // labelName
             // 
-            this.getPlayerByHandButton.Location = new System.Drawing.Point(3, 3);
-            this.getPlayerByHandButton.Name = "getPlayerByHandButton";
-            this.getPlayerByHandButton.Size = new System.Drawing.Size(171, 35);
-            this.getPlayerByHandButton.TabIndex = 4;
-            this.getPlayerByHandButton.Text = "Получить игроков";
-            this.getPlayerByHandButton.UseVisualStyleBackColor = true;
-            this.getPlayerByHandButton.Click += new System.EventHandler(this.getPlayerByHandButton_Click);
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Comic Sans MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.Location = new System.Drawing.Point(383, 91);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(75, 40);
+            this.labelName.TabIndex = 4;
+            this.labelName.Text = "Имя";
             // 
             // labelChekNotifyLable
             // 
@@ -92,6 +92,16 @@
             this.labelChekNotifyLable.Size = new System.Drawing.Size(35, 13);
             this.labelChekNotifyLable.TabIndex = 3;
             this.labelChekNotifyLable.Text = "label1";
+            // 
+            // getPlayerByHandButton
+            // 
+            this.getPlayerByHandButton.Location = new System.Drawing.Point(3, 3);
+            this.getPlayerByHandButton.Name = "getPlayerByHandButton";
+            this.getPlayerByHandButton.Size = new System.Drawing.Size(171, 35);
+            this.getPlayerByHandButton.TabIndex = 4;
+            this.getPlayerByHandButton.Text = "Получить игроков";
+            this.getPlayerByHandButton.UseVisualStyleBackColor = true;
+            this.getPlayerByHandButton.Click += new System.EventHandler(this.getPlayerByHandButton_Click);
             // 
             // chekNotifyButton
             // 
@@ -133,16 +143,6 @@
             this.labelPersonalRecord.TabIndex = 5;
             this.labelPersonalRecord.Text = "Рекорд:  0";
             // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Comic Sans MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(383, 91);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(75, 40);
-            this.labelName.TabIndex = 4;
-            this.labelName.Text = "Имя";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +155,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.WellcomePanel.ResumeLayout(false);
             this.WellcomePanel.PerformLayout();
             this.testPanel.ResumeLayout(false);

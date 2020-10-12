@@ -98,8 +98,9 @@ namespace PlanitarioServer
             
             Player player = new Player(Map.globalPublisher); 
             player.service.myself = player; 
-            player.service.stream = stream; 
-            Map.AddPlayer(player); 
+            player.service.stream = stream;
+            Player.playerList.Add(player); 
+        
             
             //player.service.Subscribe(UpdataPublisher.publisher);
             

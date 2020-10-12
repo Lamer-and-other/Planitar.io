@@ -14,12 +14,12 @@ namespace Planitar.io
         // формирование протокола для клиента 
         public static Protocol createProtocol(Canal c)
         {
-            Protocol protocol = new Protocol();
+            Protocol protocol = new Protocol(); 
             protocol.addCommand("GETSOMENICK", c.getMyself);
             protocol.addCommand("GETCHANGEDNAME", c.newName);
             protocol.addCommand("GETPLAYERS", c.getPlayers); 
             protocol.addCommand("GET_CHANGED_DATA", c.newData);
-   
+            protocol.addCommand("DATASTART", c.getStartGameData); 
             return protocol;
         }
         

@@ -14,7 +14,7 @@ namespace PlanitarioServer
       
     class Player
     {
-        //public static List<Player> playerList = new List<Player>();
+        public static List<Player> playerList = new List<Player>();
 
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
@@ -35,8 +35,9 @@ namespace PlanitarioServer
         {
             this.id = idGeneration(); 
             this.Nickname = GetSoneNick();
-            Subscribe(publisher);  
+            Position = new Point(0, 0);             
         } 
+        
         // подписка на событие изменения данных 
         public void Subscribe(Publisher publisher)
         {
@@ -52,7 +53,17 @@ namespace PlanitarioServer
         {
             return "Player" + (Map.Players.Count + 1); 
         }
-     
+        public static Player getPlayer(int id)
+        {
+            foreach(Player player in Player.playerList)
+            {
+                if(player.id == id)
+                {
+                    return player; 
+                }
+            }
+            return null; 
+        }
         // генерация уникального id, рекурсивным обходом для проверки уникальности сгенерированного id 
         public static int idGeneration() 
         {

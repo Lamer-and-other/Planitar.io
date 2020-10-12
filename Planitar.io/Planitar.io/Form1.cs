@@ -31,19 +31,40 @@ namespace Planitar.io
             timer.Interval = 1; 
             timer.Tick += _Tick; 
             //timer.Start();
-            ms.connectToServer();
+          
             
         }
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            ms.connectToServer();
+        }
+
+        private void NameBox_TextChanged(object sender, EventArgs e)
+        {
+            NameBox.Text = NameBox.Text.Replace(" ", "_");
+            string text = NameBox.Text;
+            if (text != Player.oldName)
+            {
+                if (NameBox.Text.Count() != 0)
+                {
+                    ms.changeNickName(NameBox.Text);
+                }
+            }
+        }
+
+       
+
         // идентификация 
         public void selfIdentity(int id, string name)
         {
             Player.myseft = new Player(id, name); 
-            Player.oldName = name;
-            BeginInvoke(new MethodInvoker(delegate
-            {
-                this.NameBox.Text = Player.myseft.Nickname;
-            }));        
-            ms.getPlayers(); 
+            Player.oldName = name; 
+            //BeginInvoke(new MethodInvoker(delegate 
+            //{
+            //    this.NameBox.Text = Player.myseft.Nickname;
+            //}));        
+            ms.getPlayers();           
+           
         }       
         // переименовка игрока на клиенте  
         public void resetName(string newName)
@@ -55,21 +76,11 @@ namespace Planitar.io
             }));
             ms.getPlayers();
         }
-
+        
         // кнопка "В бой" 
         private void actionButton_Click(object sender, EventArgs e)
         {
-            NameBox.Text = NameBox.Text.Replace(" ", "_");
-            if (NameBox.Text != Player.oldName)
-            {
-                if (NameBox.Text.Count() != 0)
-                {
-                    ms.changeNickName(NameBox.Text); 
-                }
-            }
-            //  
-            // тут старт игры для игрока 
-            //
+            ms.startGame(Player.myseft.id); 
         }
         // пестовое изменение значения        
         public void setNewData(int someData)
@@ -96,7 +107,7 @@ namespace Planitar.io
         {
             ms.Disconnect(); 
         }
-
+        
         // тестовая проверка получениdя игроков 
         private void getPlayerByHandButton_Click(object sender, EventArgs e)
         {
@@ -107,12 +118,12 @@ namespace Planitar.io
         {
             ms.chekNotify();
         }
-
+        // sdfrfhdsrtjhfghs
         public void _Tick(object o, EventArgs e)
         {
 
         }
-
-       
+        
+      
     }
 }

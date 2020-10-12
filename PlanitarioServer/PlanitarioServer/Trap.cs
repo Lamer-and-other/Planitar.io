@@ -10,7 +10,11 @@ namespace PlanitarioServer
     class Trap
     {
         // Размер рандомный исходя из файла GameConst
-        Point Position; // Позиция ловушки
-        Color Color;    // Цвет ловушки 
+        public Point Position; // Позиция ловушки
+        public Color Color;    // Цвет ловушки 
+        public Trap(Point p)
+        {
+            Position = p; 
+        }
     }
 }

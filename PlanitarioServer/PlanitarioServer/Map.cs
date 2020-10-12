@@ -10,15 +10,25 @@ namespace PlanitarioServer
     class Map
     {
         Size         MapSize;
-        public static List<Player> Players = new List<Player>(); 
-        List<Food>   Foods;
-        List<Trap>   Traps;
+        public static List<Player> Players = new List<Player>();
+        public static List<Food>   Foods = new List<Food>();
+        public static List<Trap> Traps = new List<Trap>();
         // static потому что карта у нас будет одна и можно пока так оставить 
         public static Publisher globalPublisher = new Publisher();  
         
         public static void AddPlayer(Player player)
         {
-            Players.Add(player); 
+            Players.Add(player);
+            player.Subscribe(globalPublisher); 
+            
+            Foods.Add(new Food(new Point(1, 0)));
+            Foods.Add(new Food(new Point(2, 0)));
+            Foods.Add(new Food(new Point(3, 0)));
+
+            
+            Traps.Add(new Trap(new Point(0, 1)));
+            Traps.Add(new Trap(new Point(0, 2)));
+
         }
         public static void RemovePlayer(Player player)
         {

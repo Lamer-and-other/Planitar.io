@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
-
+using System.Drawing; 
 
 namespace Planitar.io
 {
@@ -24,10 +24,11 @@ namespace Planitar.io
         public identification mySelfIndentity; 
         public reDrawing reDraw;
         public reName reSetName;
-        public updataPlayerList updateplayerlist;
+        public updataPlayerList updateplayerlist; 
 
         public bool isClosed = false;
         public Canal() { }
+        // создание канала 
         public Canal(string server, int port)
         {
             this.server = server;
@@ -42,7 +43,7 @@ namespace Planitar.io
             th.IsBackground = true;
             th.Start();
         }
-        
+        // функция отправки комманды с параметрами на сервер  
         public void sendCommand(byte[] data) 
         {
             byte[] banswer = new byte[4];
@@ -55,7 +56,7 @@ namespace Planitar.io
                 //message(ex.ToString());
             }
         }
-
+        // поток получения информации из сервера 
         public void getAnswer()
         {
             while (true)
@@ -77,7 +78,7 @@ namespace Planitar.io
                 }
             }
         }
-        
+        // получаем расшифрованые данные о себе для самоидентификации 
         public void getMyself(byte[] data)
         {
             int size = BitConverter.ToInt32(data, 0);
@@ -86,6 +87,7 @@ namespace Planitar.io
             mySelfIndentity(id, name);   
 
         }
+        // новое имя 
         public void newName(byte[] data)
         {
             int size = BitConverter.ToInt32(data, 0);
@@ -93,7 +95,7 @@ namespace Planitar.io
 
             reSetName(name); 
         }
-
+        // расшифровуем получиный из сервера байтный список игроков 
         public void getPlayers(byte[] data)
         {
             Player.playerList.Clear(); 
@@ -111,6 +113,45 @@ namespace Planitar.io
             }
             updateplayerlist(); 
         }
+        // получение стандартных данных старта игры для игрока   
+        public void getStartGameData(byte[] data)
+        {
+            int id = BitConverter.ToInt32(data, 0);
+            int positionX = BitConverter.ToInt32(data, 4);
+            int positionY = BitConverter.ToInt32(data, 8);
+            int size = BitConverter.ToInt32(data, 12);
+
+            int index = 24; 
+            
+            int foodCount = BitConverter.ToInt32(data, 20);
+            List<Point> foodPosition = new List<Point>(); 
+           
+            for(int i = 0; i < foodCount; i++)
+            {
+                int fX = BitConverter.ToInt32(data, index);
+                int fY = BitConverter.ToInt32(data, index + 4);
+                foodPosition.Add(new Point(fX, fY));
+                index += 8; 
+            }
+            
+
+            int trapCount = BitConverter.ToInt32(data, index); 
+            List<Point> trapPosition = new List<Point>();
+            index += 4; 
+            for(int i = 0; i < trapCount; i++)
+            {
+                int tX = BitConverter.ToInt32(data, index);
+                int tY = BitConverter.ToInt32(data, index + 4);
+                trapPosition.Add(new Point(tX, tY)); 
+                index += 8;
+            }
+
+        }
+
+
+
+
+
 
         public void newData(byte[] data) 
         {

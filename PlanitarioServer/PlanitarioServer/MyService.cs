@@ -67,11 +67,66 @@ namespace PlanitarioServer
                 byte[] lname = BitConverter.GetBytes(name.Length);
                 answer = answer.Concat(id.Concat(lname.Concat(name))).ToArray(); 
             }
-            Map.globalPublisher.notify(answer); 
+            if(Map.Players.Count != 0)
+                 Map.globalPublisher.notify(answer); 
             return null;
         }
-
         
+        public byte[] StartGame(byte[] data)
+        {
+            int id = BitConverter.ToInt32(data, 0);
+            Player player = Player.getPlayer(id);
+            Map.AddPlayer(player);
+            
+            /// записываекм данные о старте игры для игрока на сервер 
+            //ID
+            //разположение меня
+            //размер меня 
+            //разположение еды
+            //размер еды
+            //разположение ловушек 
+            //размер ловушек
+            byte[] command = buildCommand("DATASTART");  
+            byte[] ID = BitConverter.GetBytes(id);
+            // тут координаты получим из класса Map 
+            byte[] pX = BitConverter.GetBytes(player.Position.X); 
+            byte[] pY = BitConverter.GetBytes(player.Position.Y);
+            byte[] mySize = BitConverter.GetBytes(player.Score);
+            // получаем данные о еде 
+            byte[] foodCount = BitConverter.GetBytes(Map.Foods.Count);
+            byte[] foodData = foodCount; 
+            for(int i = 0; i < Map.Foods.Count; i++)
+            {
+                byte[] foodPX = BitConverter.GetBytes(Map.Foods[i].Position.X);
+                byte[] foodPY = BitConverter.GetBytes(Map.Foods[i].Position.Y);
+
+                foodData = foodData.Concat(foodPX.Concat(foodPY)).ToArray();             
+            }
+            // получаем данные ^о ловушках  
+            byte[] trapCount = BitConverter.GetBytes(Map.Traps.Count);
+            byte[] trapData = trapCount; 
+            for (int i = 0; i < Map.Traps.Count; i++)
+            {
+                byte[] trapPX = BitConverter.GetBytes(Map.Traps[i].Position.X);
+                byte[] trapPY = BitConverter.GetBytes(Map.Traps[i].Position.Y);
+
+                trapData = trapData.Concat(trapPX.Concat(trapPY)).ToArray();
+            }
+            
+            byte[] answer = command.Concat(ID.Concat(pX.Concat(pY.Concat(
+                mySize.Concat((foodData.Concat(trapData))))))).ToArray(); 
+            return answer; 
+        }
+
+
+
+
+
+
+
+
+
+
         // тестовое уведомление об изменениях 
         public byte[] notifyAboutChanges(byte[] data)
         {

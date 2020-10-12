@@ -30,7 +30,7 @@ namespace Planitar.io
             byte[] fullCommand = lcommand.Concat(command).ToArray();
             return fullCommand;
         }
-
+        // формирование и отправа комманды подлючение 
         public void connectToServer()
         {
             byte[] command = buildCommand("CONNECT"); 
@@ -39,6 +39,7 @@ namespace Planitar.io
             byte[] request = command.Concat(lmessage.Concat(message)).ToArray(); 
             canal.sendCommand(request); 
         }
+        // формирование и отправа комманды смены ника 
 
         public void changeNickName(string newName) 
         {
@@ -48,12 +49,20 @@ namespace Planitar.io
             byte[] request = command.Concat(lmessage.Concat(message)).ToArray();
             canal.sendCommand(request);
         }
-
+        // формирование и отправа комманды получения игроков 
         public void getPlayers()
         {
             byte[] command = buildCommand("GETPLAYERS");
             byte[] request = command; 
             canal.sendCommand(request);
+        }
+
+        public void startGame(int id)
+        {
+            byte[] command = buildCommand("STARTGAME");
+            byte[] ID = BitConverter.GetBytes(id);
+            byte[] request = command.Concat(ID).ToArray(); 
+            canal.sendCommand(request); 
         }
 
         public void chekNotify()
@@ -62,7 +71,7 @@ namespace Planitar.io
             byte[] request = command; 
             canal.sendCommand(request);
         }
-        
+        // формирование и отправа комманды отключения от сервера 
         public void Disconnect()
         {
             byte[] command = buildCommand("CLOSE");
