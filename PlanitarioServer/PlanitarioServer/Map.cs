@@ -30,7 +30,7 @@ namespace PlanitarioServer
         public static int SortPart(ref int[] mass, int min, int max)
         {
             int pivot = min - 1; 
-            for(int i = min; i <= max; i++)
+            for(int i = min; i < max; i++)
             {
                 if(mass[i] > mass[max])
                 {
@@ -40,10 +40,10 @@ namespace PlanitarioServer
                     mass[i] = temp; 
                 }
             } 
-            //pivot++;
-            //int temp2 = mass[pivot]; 
-            //mass[pivot] = mass[max];
-            //mass[max] = temp2;
+            pivot++;
+            int temp2 = mass[pivot]; 
+            mass[pivot] = mass[max];
+            mass[max] = temp2;
             return pivot; 
         }
         // быстрая сортировка 

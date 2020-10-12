@@ -20,16 +20,16 @@ namespace Planitar.io
 
     public partial class Form1 : Form
     {
-        MyService ms;
+        MyService ms = null;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer(); 
         public Form1()
         {
             InitializeComponent();
             Canal canal = new Canal("127.0.0.1", 2020); 
-            ms = new MyService(canal);
+            ms = new MyService(canal); 
             ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList); 
             timer.Interval = 1; 
-            timer.Tick += _Tick;
+            timer.Tick += _Tick; 
             //timer.Start();
             ms.connectToServer();
             
@@ -37,7 +37,7 @@ namespace Planitar.io
         // идентификация 
         public void selfIdentity(int id, string name)
         {
-            Player.myseft = new Player(id, name);
+            Player.myseft = new Player(id, name); 
             Player.oldName = name;
             BeginInvoke(new MethodInvoker(delegate
             {
@@ -48,7 +48,7 @@ namespace Planitar.io
         // переименовка игрока на клиенте  
         public void resetName(string newName)
         {
-            Player.myseft.Nickname = newName;
+            Player.myseft.Nickname = newName; 
             BeginInvoke(new MethodInvoker(delegate
             {
                 this.NameBox.Text = Player.myseft.Nickname;
@@ -68,7 +68,7 @@ namespace Planitar.io
                 }
             }
             //  
-            // тут старт игры
+            // тут старт игры для игрока 
             //
         }
         // пестовое изменение значения        
@@ -88,10 +88,10 @@ namespace Planitar.io
                 PlayerList.Items.Clear();
                 foreach (Player p in Player.playerList)
                     PlayerList.Items.Add("id: " + p.id.ToString() + " - " + p.Nickname);
-            }));
-          
+            }));          
         } 
-
+        
+        // при закрытии программы отправляется запрос об отсоединении на сервер 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             ms.Disconnect(); 
