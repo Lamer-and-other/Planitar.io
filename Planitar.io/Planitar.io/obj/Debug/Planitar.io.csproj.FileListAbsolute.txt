@@ -16,3 +16,6 @@ E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planita
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Form1.resources
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Properties.Resources.resources
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csproj.GenerateResource.Cache
+C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.exe.config
+C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.exe
+C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.pdb
