@@ -25,7 +25,7 @@ namespace PlanitarioServer
             Players.Remove(player);
         }      
 
-        
+
         // сортируем часть массива относительно опоры  
         public static int SortPart(ref int[] mass, int min, int max)
         {

@@ -97,7 +97,7 @@ namespace Planitar.io
             ms.Disconnect(); 
         }
 
-        // тестовая проверка получения игроков 
+        // тестовая проверка получениdя игроков 
         private void getPlayerByHandButton_Click(object sender, EventArgs e)
         {
             ms.getPlayers();
