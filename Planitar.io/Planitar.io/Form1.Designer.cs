@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.actionButton = new System.Windows.Forms.Button();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.WellcomePanel = new System.Windows.Forms.Panel();
@@ -38,19 +39,23 @@
             this.PlayerList = new System.Windows.Forms.ListBox();
             this.testPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.labelPersonalRecord = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.T_MouseMove = new System.Windows.Forms.Timer(this.components);
             this.WellcomePanel.SuspendLayout();
             this.testPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionButton
             // 
+            this.actionButton.BackColor = System.Drawing.Color.Red;
             this.actionButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.actionButton.Location = new System.Drawing.Point(220, 188);
             this.actionButton.Name = "actionButton";
             this.actionButton.Size = new System.Drawing.Size(402, 35);
             this.actionButton.TabIndex = 0;
             this.actionButton.Text = "В бой";
-            this.actionButton.UseVisualStyleBackColor = true;
+            this.actionButton.UseVisualStyleBackColor = false;
             this.actionButton.Click += new System.EventHandler(this.actionButton_Click);
             // 
             // NameBox
@@ -69,7 +74,7 @@
             this.WellcomePanel.Controls.Add(this.NameBox);
             this.WellcomePanel.Controls.Add(this.actionButton);
             this.WellcomePanel.Controls.Add(this.labelChekNotifyLable);
-            this.WellcomePanel.Location = new System.Drawing.Point(157, 95);
+            this.WellcomePanel.Location = new System.Drawing.Point(145, 128);
             this.WellcomePanel.Name = "WellcomePanel";
             this.WellcomePanel.Size = new System.Drawing.Size(844, 355);
             this.WellcomePanel.TabIndex = 2;
@@ -119,7 +124,7 @@
             this.PlayerList.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PlayerList.FormattingEnabled = true;
             this.PlayerList.ItemHeight = 15;
-            this.PlayerList.Location = new System.Drawing.Point(1023, 12);
+            this.PlayerList.Location = new System.Drawing.Point(1007, 10);
             this.PlayerList.Name = "PlayerList";
             this.PlayerList.Size = new System.Drawing.Size(169, 259);
             this.PlayerList.TabIndex = 3;
@@ -128,7 +133,7 @@
             // 
             this.testPanel.Controls.Add(this.getPlayerByHandButton);
             this.testPanel.Controls.Add(this.chekNotifyButton);
-            this.testPanel.Location = new System.Drawing.Point(3, 544);
+            this.testPanel.Location = new System.Drawing.Point(13, 547);
             this.testPanel.Name = "testPanel";
             this.testPanel.Size = new System.Drawing.Size(1189, 43);
             this.testPanel.TabIndex = 4;
@@ -137,21 +142,35 @@
             // 
             this.labelPersonalRecord.AutoSize = true;
             this.labelPersonalRecord.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPersonalRecord.Location = new System.Drawing.Point(9, 9);
+            this.labelPersonalRecord.Location = new System.Drawing.Point(12, 10);
             this.labelPersonalRecord.Name = "labelPersonalRecord";
             this.labelPersonalRecord.Size = new System.Drawing.Size(145, 38);
             this.labelPersonalRecord.TabIndex = 5;
             this.labelPersonalRecord.Text = "Рекорд:  0";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.WellcomePanel);
+            this.panel1.Controls.Add(this.labelPersonalRecord);
+            this.panel1.Controls.Add(this.PlayerList);
+            this.panel1.Location = new System.Drawing.Point(2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1190, 538);
+            this.panel1.TabIndex = 6;
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_MouseMove);
+            this.panel1.Resize += new System.EventHandler(this.panel_Resize);
+            // 
+            // T_MouseMove
+            // 
+            this.T_MouseMove.Tick += new System.EventHandler(this.T_MouseMove_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 589);
-            this.Controls.Add(this.labelPersonalRecord);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.testPanel);
-            this.Controls.Add(this.PlayerList);
-            this.Controls.Add(this.WellcomePanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -159,8 +178,9 @@
             this.WellcomePanel.ResumeLayout(false);
             this.WellcomePanel.PerformLayout();
             this.testPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -176,6 +196,8 @@
         private System.Windows.Forms.FlowLayoutPanel testPanel;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelPersonalRecord;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer T_MouseMove;
     }
 }
 

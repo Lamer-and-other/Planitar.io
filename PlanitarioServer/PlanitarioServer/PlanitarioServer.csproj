@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deceleration.cs" />
     <Compile Include="Food.cs" />
     <Compile Include="GameConst.cs" />
     <Compile Include="Map.cs" />

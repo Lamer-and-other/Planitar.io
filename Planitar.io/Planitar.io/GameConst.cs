@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlanitarioServer
+namespace Planitar.io
 {
-    public static class GameConst
+    class GameConst
     {
-
         public static float PlayerMaxSpeed = 10f;     // Максимальная скорость игрока
         public static float PlayerMinSpeed = 1.0f;     // Минимальная скорость игрока
         public static float PlayerMinMapScale = 1.0f;  // Минимальный масштаб игрока
@@ -24,5 +23,6 @@ namespace PlanitarioServer
 
         public static int MapSizeX = 3000;      // Размер карты по X
         public static int MapSizeY = 3000;      // Размер карты по Y
+
     }
 }

@@ -75,7 +75,7 @@ namespace PlanitarioServer
         public byte[] StartGame(byte[] data)
         {
             int id = BitConverter.ToInt32(data, 0);
-            Player player = Player.getPlayer(id);
+            Player player = Player.getPlayer(id); 
             Map.AddPlayer(player);
             
             /// записываекм данные о старте игры для игрока на сервер 
@@ -97,8 +97,8 @@ namespace PlanitarioServer
             byte[] foodData = foodCount; 
             for(int i = 0; i < Map.Foods.Count; i++)
             {
-                byte[] foodPX = BitConverter.GetBytes(Map.Foods[i].Position.X);
-                byte[] foodPY = BitConverter.GetBytes(Map.Foods[i].Position.Y);
+                byte[] foodPX = BitConverter.GetBytes(Map.Foods[i].Сollision.X); 
+                byte[] foodPY = BitConverter.GetBytes(Map.Foods[i].Сollision.Y); 
 
                 foodData = foodData.Concat(foodPX.Concat(foodPY)).ToArray();             
             }

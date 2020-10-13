@@ -11,14 +11,14 @@ namespace PlanitarioServer
     {
         static void Main(string[] args)
         {
-            int[] mass = new int[10] { 5, 3, 7, 2, 9, 6, 3, 9, 3, 10 };
-            Map.QuickSort(ref mass, 0, mass.Count() - 1); 
-            for(int i = 0; i < mass.Count(); i++)
-            {
-                Console.Write(mass[i] + " "); 
-            }
-            Console.WriteLine(); 
-
+            //int[] mass = new int[10] { 5, 3, 7, 2, 9, 6, 3, 9, 3, 10 };
+            //Map.QuickSort(ref mass, 0, mass.Count() - 1); 
+            //for(int i = 0; i < mass.Count(); i++)
+            //{
+            //    Console.Write(mass[i] + " "); 
+            //}
+            //Console.WriteLine(); 
+            Map.Create(); 
             Server server = new Server();
             server.servermeesage = printMessage;
             server.Start();

@@ -1,7 +1,6 @@
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.exe.config
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.exe
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.pdb
-C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csprojResolveAssemblyReference.cache
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Form1.resources
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Properties.Resources.resources
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csproj.GenerateResource.Cache

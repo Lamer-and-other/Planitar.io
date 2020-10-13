@@ -18,8 +18,8 @@ namespace PlanitarioServer
 
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
-        public ulong Score = 0;          // Счёт игрока
-        public ulong Record = 0;           // Рекорд игрока
+        public long Score = 0;          // Счёт игрока
+        public long Record = 0;           // Рекорд игрока
         public bool isAlive = false;                // жив ли игрок 
         public float MapScale = 0;         // Текущий масштаб карты
         public float Speed = 1;            // Текущая скорость игрока       
@@ -27,7 +27,8 @@ namespace PlanitarioServer
         public uint LostScoresOnStep { set; get; }   // Количество очков которые мы теряем, например каждые 5 
         public Point Position { set; get; }       // Позиция игрока
         public Color Color { set; get; }         // Цвет игрока
-        Rectangle ellipce = new Rectangle();
+
+        public Rectangle Сollision = new Rectangle();
 
         public MyService service = new MyService(); // класс для расшифровки-обработки полученый от клиента данных            
         
@@ -55,7 +56,7 @@ namespace PlanitarioServer
         }
         public static Player getPlayer(int id)
         {
-            foreach(Player player in Player.playerList)
+            foreach(Player player in Player.playerList) 
             {
                 if(player.id == id)
                 {
@@ -75,10 +76,14 @@ namespace PlanitarioServer
                     idGeneration(); 
             }
             return id;
-        }       
-
-      
-
+        }
+        
+        public void ChangeSize(int x)
+        {
+            Score += x;
+            Сollision.Width += x;
+            Сollision.Height += x; 
+        } 
     }
 
 }

@@ -17,7 +17,7 @@ namespace Planitar.io
         public TcpClient client = null;
         public NetworkStream stream = null;
         
-        public string server = "";
+        public string server = ""; 
         public int port = 0;
         Protocol protocol;
         
@@ -27,7 +27,10 @@ namespace Planitar.io
         public updataPlayerList updateplayerlist; 
 
         public bool isClosed = false;
+        public Map map { set; get; }
+
         public Canal() { }
+        
         // создание канала 
         public Canal(string server, int port)
         {
@@ -131,10 +134,11 @@ namespace Planitar.io
                 int fX = BitConverter.ToInt32(data, index);
                 int fY = BitConverter.ToInt32(data, index + 4);
                 foodPosition.Add(new Point(fX, fY));
+                map.AddFood(new Point(fX, fY)); 
                 index += 8; 
             }
             
-
+            
             int trapCount = BitConverter.ToInt32(data, index); 
             List<Point> trapPosition = new List<Point>();
             index += 4; 
@@ -142,10 +146,11 @@ namespace Planitar.io
             {
                 int tX = BitConverter.ToInt32(data, index);
                 int tY = BitConverter.ToInt32(data, index + 4);
-                trapPosition.Add(new Point(tX, tY)); 
+                trapPosition.Add(new Point(tX, tY));
+                map.AddTrap(new Point(tX, tY));   
                 index += 8;
             }
-
+            
         }
 
 
