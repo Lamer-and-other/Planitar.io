@@ -17,6 +17,8 @@ namespace Planitar.io
         public Rectangle Сollision; // коллайдер еды
         public Color color;
 
+        public Food() { }
+        
         public Food(Point location, Rectangle MapRectangle)
         {
             Random rand = new Random(); 

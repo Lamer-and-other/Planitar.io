@@ -8,7 +8,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
-using System.Drawing; 
+using System.Drawing;
+
 
 namespace Planitar.io
 {
@@ -24,7 +25,8 @@ namespace Planitar.io
         public identification mySelfIndentity; 
         public reDrawing reDraw;
         public reName reSetName;
-        public updataPlayerList updateplayerlist; 
+        public updataPlayerList updateplayerlist;
+        public InitialGame initialGame; 
 
         public bool isClosed = false;
         public Map map { set; get; }
@@ -73,7 +75,7 @@ namespace Planitar.io
                     stream.Read(banswer, 0, banswer.Length); 
                     string answerCommand = protocol.parseCommand(banswer);
                     protocol.getMethod(answerCommand)(protocol.parseData(banswer));
-
+                    
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +100,7 @@ namespace Planitar.io
 
             reSetName(name); 
         }
+        
         // расшифровуем получиный из сервера байтный список игроков 
         public void getPlayers(byte[] data)
         {
@@ -109,8 +112,10 @@ namespace Planitar.io
                 int id = BitConverter.ToInt32(data, index);
                 int sizeName = BitConverter.ToInt32(data, index + 4); 
                 string name = Encoding.Default.GetString(data, index + 8, sizeName);
+                Random rand = new Random(); 
+                Player newPlayer = new Player(id, name, Color.FromArgb(
+                    rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255))); 
                 
-                Player newPlayer = new Player(id, name);
                 Player.playerList.Add(newPlayer); 
                 index += (8 + sizeName); 
             }
@@ -150,6 +155,7 @@ namespace Planitar.io
                 map.AddTrap(new Point(tX, tY));   
                 index += 8;
             }
+            initialGame(size, positionX, positionY); 
             
         }
 

@@ -40,9 +40,9 @@ namespace PlanitarioServer
             color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
 
-        public void Draw(Graphics g)
-        {
-            g.FillEllipse(new SolidBrush(color), Сollision);
-        }
+        //public void Draw(Graphics g)
+        //{
+        //    g.FillEllipse(new SolidBrush(color), Сollision);
+        //}
     }
 }

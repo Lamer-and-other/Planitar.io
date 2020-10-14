@@ -11,7 +11,6 @@ E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planita
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.pdb
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.exe
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\bin\Debug\Planitar.io.pdb
-E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csprojResolveAssemblyReference.cache
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Form1.resources
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.Properties.Resources.resources
 E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csproj.GenerateResource.Cache

@@ -29,6 +29,10 @@ namespace PlanitarioServer
         
         public static void AddPlayer(Player player)
         {
+            player.Score = 10;
+            player.Record = 10;
+         
+            
             Players.Add(player);
             player.Subscribe(globalPublisher);
         }
@@ -62,7 +66,7 @@ namespace PlanitarioServer
 
                     foreach (Deceleration dec in Traps) 
                     {
-                        if (t.Rect.IntersectsWith(dec.Rect))
+                        if (t.Rect.IntersectsWith(dec.Rect)) 
                         {
                             t.ReRandom(Randomer, MapRectangle);
                             flag = true;

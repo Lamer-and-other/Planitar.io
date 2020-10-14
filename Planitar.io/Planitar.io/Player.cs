@@ -15,7 +15,7 @@ namespace Planitar.io
         public static string oldName { set; get; }
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
-        public long Score = 0;          // Счёт игрока
+        public int Score = 0;          // Счёт игрока
         public long Record = 0;           // Рекорд игрока
         public bool isAlive = false;                // жив ли игрок 
         public bool itsMe = false; 
@@ -32,28 +32,33 @@ namespace Planitar.io
         public Rectangle Сollision = new Rectangle();
         public Color Color { set; get; }         // Цвет игрока
 
-        public Player(int id, string Nickname)
+        // инициализация нас 
+        public Player(int id, string Nickname, Color color)
         {
             this.id = id; 
             this.Nickname = Nickname;
+            this.MapScale = 1f; 
+            this.Speed = 0f;
+            this.BonusSpeed = false; 
+            this.LostScoresOnStep = 0;
+            this.Color = color; 
+            this.PlusCoordinates = new Point(0, 0);
+          
         }
-        
+
+        // инициализания других игроков 
         public Player(Player player, Color color)
         {
-            this.MapScale = 1f;
-            this.Speed = 0f;
-            this.BonusSpeed = false;
-            this.LostScoresOnStep = 0;
-            this.Color = color;
-            this.PlusCoordinates = new Point(0, 0); 
+            this.id = id;
+            this.Nickname = Nickname;
         }
-        
+
         public void ChangeSize(int x) 
         {
             Score += x;
             Сollision.Width += x; 
             Сollision.Height += x;
-            Form1.thisForm.ChangeCenter();
+            Form1.thisForm.ChangeCenter(); 
         }
     }
 }

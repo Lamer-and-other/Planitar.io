@@ -15,7 +15,9 @@ namespace Planitar.io
     delegate void reName(string newName);
     delegate void reDrawing(int someData);
     delegate void updataPlayerList();
+    delegate void InitialGame(int size, int x, int y);
     
+
     public delegate void InvokePrintMessages(string m);
 
     public partial class Form1 : Form
@@ -29,28 +31,21 @@ namespace Planitar.io
         public static Point globalCenter = new Point(0, 0); // Центр для отрисовки всех фигур
         public static Point myMouse = new Point(0, 0);      // Координаты мыши
 
-        Map gameMap = new Map();              // Карта игры
+        Map gameMap = null;             // Карта игры
 
         
 
         MyService ms = null;
+        Canal canal = null; 
         public Form1()
         {
             InitializeComponent();
-            Canal canal = new Canal("127.0.0.1", 2020);
-            canal.map = gameMap; 
+            canal = new Canal("127.0.0.1", 2020);
             ms = new MyService(canal); 
-            ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList); 
-            Player.myseft.Color =  Color.FromArgb(0, 255, 0); 
-            thisForm = this;
-            
-            SetGlobalCenter();  // Определяем центр формы
-            DoubleBuffering();  // Устанавливаем двойнную буферизацию для панели
-            ChangeCenter();
-
+            ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList, initialGame);          
+            thisForm = this;                        
             T_MouseMove.Interval = 1000 / 60;   
-            T_MouseMove.Start(); 
-
+            
         }
         public void SetGlobalCenter()
         {
@@ -64,7 +59,11 @@ namespace Planitar.io
             gameMap.MoveThisPlayer();
             
             // Каждый тик отрисовываем все по новой
-            DrawThis();
+            DrawThis(); 
+
+            ///
+            /// отправка данных о местоположении на сервер 
+            ///
         }
         
         public void ChangeCenter()
@@ -82,7 +81,7 @@ namespace Planitar.io
         private void panel_Resize(object sender, EventArgs e)
         {
             // Пересоздаем графику для отрисовки в панели
-            DoubleBuffering();
+            DoubleBuffering(); 
             // Меняем центр для отрисовки отностельно панели
             gameMap.CenterPlayer(new Point(panel1.Width / 2, panel1.Height / 2));
         }
@@ -149,12 +148,12 @@ namespace Planitar.io
                 }
             }
         }      
-
+        
         // идентификация 
         public void selfIdentity(int id, string name)
         {
-            Player.myseft = new Player(id, name); 
-            Player.oldName = name; 
+            Player.myseft = new Player(id, name, Color.FromArgb(0,0,0));
+            Player.oldName = name;
             //BeginInvoke(new MethodInvoker(delegate 
             //{
             //    this.NameBox.Text = Player.myseft.Nickname;
@@ -176,9 +175,40 @@ namespace Planitar.io
         // кнопка "В бой" 
         private void actionButton_Click(object sender, EventArgs e)
         {
-            ms.startGame(Player.myseft.id);
-            WellcomePanel.Visible = false; 
+            gameMap = new Map();
+            canal.map = gameMap; 
+            ms.startGame(Player.myseft.id); 
+            WellcomePanel.Visible = false;
+           
         }
+
+        public void initialGame(int size, int x, int y)
+        {
+            Random rand = new Random(); 
+            int score = Player.myseft.Score;
+
+            Player.myseft.Сollision = new Rectangle(
+                globalCenter.X - (score * 10 / 2), 
+                globalCenter.Y - (score * 10 / 2), size * 10, size * 10);
+            
+            Player.myseft.Color = Color.FromArgb(rand.Next(0, 255), 
+                rand.Next(0, 255), rand.Next(0, 255));
+            Player.myseft.Score = size;
+  
+
+            gameMap.CurrentPlayer = Player.myseft; 
+            SetGlobalCenter();  // Определяем центр формы 
+            DoubleBuffering();  // Устанавливаем двойнную буферизацию для панели 
+            ChangeCenter();
+            
+            BeginInvoke(new MethodInvoker(delegate
+            {
+                T_MouseMove.Start();
+            }));
+
+        }
+
+        
         // пестовое изменение значения        
         public void setNewData(int someData)
         {

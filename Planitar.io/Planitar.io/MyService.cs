@@ -13,13 +13,14 @@ namespace Planitar.io
         {
             this.canal = canal; 
         }
-        public void SetDelegats(identification idt, reName rnm, reDrawing reDraw, updataPlayerList upl)
+        public void SetDelegats(identification idt, reName rnm,
+            reDrawing reDraw, updataPlayerList upl, InitialGame ig)
         {
             canal.mySelfIndentity = idt;
             canal.reSetName = rnm;
-            canal.reDraw = reDraw;
-            canal.updateplayerlist = upl; 
-
+            canal.reDraw = reDraw; 
+            canal.updateplayerlist = upl;
+            canal.initialGame = ig; 
         }
         
         // формирование комманды 

@@ -13,7 +13,7 @@ namespace Planitar.io
         Random Randomer;
         Rectangle MapRectangle;
         //Player CurrentPlayer;
-        public static List<Player> Players;
+        public static List<Player> Players; 
         List<Food> Foods;
         List<Trap> Traps;
         int LastId = 1;
@@ -25,7 +25,8 @@ namespace Planitar.io
 
         StringFormat stringFormat;
 
-        Player CurrentPlayer = null; 
+        public Player CurrentPlayer = null; 
+
         public Map()
         {
             // Метод для расчёта максимального объёма пикселей для перемещения игрока
@@ -41,8 +42,6 @@ namespace Planitar.io
                 Form1.globalCenter.Y - GameConst.MapSizeY / 2, GameConst.MapSizeX, GameConst.MapSizeY);
             
             StartMapCoordinates = new Point(MapRectangle.X, MapRectangle.Y);
-
-            CurrentPlayer = Player.myseft;
 
             stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
@@ -193,7 +192,7 @@ namespace Planitar.io
             return new Point(StartMapCoordinates.X - MapRectangle.X, StartMapCoordinates.Y - MapRectangle.Y);
         }
         
-        // клиент 
+        
         public void ChangeCoordinates(int plus, bool _X = false, bool _Y = false)
         {
             // В этом методе перемещаем все фигуры
@@ -210,21 +209,23 @@ namespace Planitar.io
             foreach (Deceleration i in Traps)
             {
                 if (_X) i.Сollision.X += plus;
-                if (_Y) i.Сollision.Y += plus;
+                if (_Y) i.Сollision.Y += plus; 
             }
 
         }
+        
         public int IfPlusmax(int x)
         {
             // Возвращаем количество пикселей для добавления (скорость) (переделываем сейчас)
             return (int)(x / (ScaleBy / GameConst.PlayerMaxSpeed)); ;
         }
+        
         public void AddFood(Point location)
         {
             Food f = new Food(location, MapRectangle);
             Foods.Add(f); 
         }
-
+        
         public void AddTrap(Point location)
         {
             Deceleration t = new Deceleration(location, MapRectangle);
@@ -240,11 +241,12 @@ namespace Planitar.io
 
         //public void RemovePlayer(Player player)
         //{
-        //    // Этот метод ещё стоит обсудить
+        //    // Этот метод ещё стоит обсудить 
         //    Players.Remove(player);
         //}
-        // сервер 
-        public void Eat(Food food) 
+        
+        // сервер         
+        public void Eat() 
         {
             // Метод сравнения какую пищу мы съели
             foreach (Food food in Foods)
@@ -252,30 +254,30 @@ namespace Planitar.io
                 Point center = new Point(food.Сollision.X + food.Сollision.Width / 2, food.Сollision.Y + food.Сollision.Height / 2);
                 if (food.Try_Eat(CurrentPlayer, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
                 {
-                    CurrentPlayer.ChangeSize((int)food.Bonus);
-                    food.Destruction(Randomer, MapRectangle); 
+                    CurrentPlayer.ChangeSize((int)food.Bonus); 
+                    food.Destruction(food);
                     break;
                 }
-            } 
+            }
+            // тут будет отправлятся запрос проверки на съеденость кружка 
         }
       
         public void DrawIt()
         {
-            // Метод для отрисвоки на форме
-
+            // Метод для отрисвоки на форме 
             Form1.panelBuffer.Graphics.Clear(Color.White);
-
+            
             Form1.panelBuffer.Graphics.FillRectangle(Brushes.WhiteSmoke, MapRectangle);
-
-            foreach (Player i in Players)
-                Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(Color.DarkGreen), i.Сollision);
+            
+            foreach (Player i in Players) 
+                Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.Color), i.Сollision);
             foreach (Food i in Foods)
                 Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.color), i.Сollision);
             foreach (Deceleration i in Traps)
                 Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.color), i.Сollision);
 
             Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(CurrentPlayer.Color), CurrentPlayer.Сollision);
-
+            
             Form1.panelBuffer.Graphics.DrawString(CurrentPlayer.Score.ToString(), font, Brushes.Green, CurrentPlayer.Сollision, stringFormat);
 
             Form1.panelBuffer.Render();
@@ -286,7 +288,7 @@ namespace Planitar.io
             float cof = ((Math.Min(Form1.globalCenter.X * 2, Form1.globalCenter.Y * 2) - 200) / (CurrentPlayer.Сollision.Width));
             MapRectangle = GetIt(cof, MapRectangle);
             CurrentPlayer.Сollision = GetIt(cof, CurrentPlayer.Сollision);
-
+            
             foreach (Player i in Players)
             {
                 i.Сollision = GetIt(cof, i.Сollision);
@@ -300,12 +302,12 @@ namespace Planitar.io
                 i.Сollision = GetIt(cof, i.Сollision);
             }
         }
+        
         public Rectangle GetIt(float cof, Rectangle rec)
         {
             // Этот метод для масштабирования всех элементов относительно размера игрока, ещё в разработке
-
             int newW, newH, newX, newY;
-
+            
             newW = (int)(rec.Width * cof);
             newH = (int)(rec.Height * cof);
             newX = rec.X - (int)((newW) / 2) + Form1.globalCenter.X;
