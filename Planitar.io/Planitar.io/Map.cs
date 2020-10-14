@@ -220,9 +220,9 @@ namespace Planitar.io
             return (int)(x / (ScaleBy / GameConst.PlayerMaxSpeed)); ;
         }
         
-        public void AddFood(Point location)
+        public void AddFood(Point location, int bonus)
         {
-            Food f = new Food(location, MapRectangle);
+            Food f = new Food(location, MapRectangle, bonus);
             Foods.Add(f); 
         }
         
@@ -258,7 +258,7 @@ namespace Planitar.io
                     food.Destruction(food);
                     break;
                 }
-            }
+            } 
             // тут будет отправлятся запрос проверки на съеденость кружка 
         }
       
@@ -295,7 +295,7 @@ namespace Planitar.io
             }
             foreach (Food i in Foods)
             {
-                i.Сollision = GetIt(cof, i.Сollision);
+                i.Сollision = GetIt(cof, i.Сollision); 
             }
             foreach (Deceleration i in Traps)
             {

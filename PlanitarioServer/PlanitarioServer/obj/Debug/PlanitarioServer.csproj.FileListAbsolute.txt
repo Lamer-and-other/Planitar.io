@@ -9,3 +9,4 @@ E:\Файлы\Работа\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Deb
 E:\Файлы\Работа\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Debug\PlanitarioServer.pdb
 E:\Файлы\Работа\Planitar.io\PlanitarioServer\PlanitarioServer\bin\Debug\PlanitarioServer.exe
 E:\Файлы\Работа\Planitar.io\PlanitarioServer\PlanitarioServer\bin\Debug\PlanitarioServer.pdb
+E:\Файлы\Работа\Planitar.io\PlanitarioServer\PlanitarioServer\obj\Debug\PlanitarioServer.csprojResolveAssemblyReference.cache

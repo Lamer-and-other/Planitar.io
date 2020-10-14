@@ -99,8 +99,9 @@ namespace PlanitarioServer
             {
                 byte[] foodPX = BitConverter.GetBytes(Map.Foods[i].Сollision.X); 
                 byte[] foodPY = BitConverter.GetBytes(Map.Foods[i].Сollision.Y); 
-
-                foodData = foodData.Concat(foodPX.Concat(foodPY)).ToArray();             
+                byte[] bonus = BitConverter.GetBytes(Map.Foods[i].Bonus);
+                
+                foodData = foodData.Concat(foodPX.Concat(foodPY.Concat(bonus))).ToArray();             
             }
             // получаем данные ^о ловушках  
             byte[] trapCount = BitConverter.GetBytes(Map.Traps.Count);

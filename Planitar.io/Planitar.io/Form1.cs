@@ -192,7 +192,7 @@ namespace Planitar.io
                 globalCenter.Y - (score * 10 / 2), size * 10, size * 10);
             
             Player.myseft.Color = Color.FromArgb(rand.Next(0, 255), 
-                rand.Next(0, 255), rand.Next(0, 255));
+                rand.Next(0, 255), rand.Next(0, 255)); 
             Player.myseft.Score = size;
   
 

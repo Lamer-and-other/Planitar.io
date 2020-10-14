@@ -19,15 +19,16 @@ namespace Planitar.io
 
         public Food() { }
         
-        public Food(Point location, Rectangle MapRectangle)
+        public Food(Point location, Rectangle MapRectangle, int bonus)
         {
             Random rand = new Random(); 
             bonus = rand.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
             // размеры коллайдера еды
             Сollision = new Rectangle(new Point(location.X, location.Y), new Size(bonus * 3 + 10, bonus * 3 + 10));
             color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            this.bonus = bonus; 
         }
-
+        
         public int Bonus { get { return bonus; } }
 
         public bool Try_Eat(Player player, Point center_food)

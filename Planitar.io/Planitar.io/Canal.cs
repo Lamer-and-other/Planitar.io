@@ -138,9 +138,10 @@ namespace Planitar.io
             {
                 int fX = BitConverter.ToInt32(data, index);
                 int fY = BitConverter.ToInt32(data, index + 4);
+                int bonus = BitConverter.ToInt32(data, index + 8);
                 foodPosition.Add(new Point(fX, fY));
-                map.AddFood(new Point(fX, fY)); 
-                index += 8; 
+                map.AddFood(new Point(fX, fY), bonus); 
+                index += 12;  
             }
             
             
