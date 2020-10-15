@@ -16,7 +16,7 @@ namespace Planitar.io
     delegate void reDrawing(int someData);
     delegate void updataPlayerList();
     delegate void InitialGame(int size, int x, int y);
-    delegate void NewMove();
+    delegate void NewMove(bool eat, Food food, int fx, int fy, int id, int x, int y); 
 
     public delegate void InvokePrintMessages(string m);
 
@@ -42,7 +42,7 @@ namespace Planitar.io
             ms = new MyService(canal); 
             ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList, initialGame, newMove);          
             thisForm = this;                        
-            T_MouseMove.Interval = 1000 / 60;   
+            T_MouseMove.Interval = 1000 / 60;  
             
         }
         public void setBonusLable(string str)
@@ -67,7 +67,7 @@ namespace Planitar.io
             DrawThis();
 
             // отправляем на сервер новые данные о местоположении игрока (для всех игроков) 
-           // ms.NewMove(gameMap.CurrentPlayer.id, new Point(gameMap.CurrentPlayer.Сollision.X, gameMap.CurrentPlayer.Сollision.Y));   
+            ms.NewMove(gameMap.CurrentPlayer.id, new Point(gameMap.CurrentPlayer.Сollision.X, gameMap.CurrentPlayer.Сollision.Y));   
         }
         
         public void ChangeCenter()
@@ -213,8 +213,25 @@ namespace Planitar.io
         }
 
 
-        public void newMove()
+        void newMove(bool eat, Food food, int fx, int fy, int id, int x, int y)
         {
+            Player player = gameMap.getPlayer(id);
+
+            if (Player.myseft.id != id)
+                player = Player.getPlayer(id);
+            else
+                player = Player.myseft;
+
+            
+            if (eat == true)
+            {
+                food = Food.searchFood(fx, fy, gameMap.Foods); 
+                gameMap.Eat(player, food);  
+            }
+
+            player.Сollision.X = x; 
+            player.Сollision.Y = y; 
+            
 
         }
         

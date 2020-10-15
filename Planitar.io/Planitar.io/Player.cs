@@ -52,7 +52,7 @@ namespace Planitar.io
             this.id = id;
             this.Nickname = Nickname;
         }
-
+        
         public void ChangeSize(int x) 
         {
             Score += x;

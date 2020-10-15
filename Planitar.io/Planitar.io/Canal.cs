@@ -162,24 +162,20 @@ namespace Planitar.io
 
         public void getNewMove(byte[] data)
         {
-            Player player = null;
             Food food = null; 
             int id = BitConverter.ToInt32(data, 0);
             int x = BitConverter.ToInt32(data, 4);
-            int y = BitConverter.ToInt32(data, 8);
-            if (Player.myseft.id != id)
-                player = Player.getPlayer(id);
-            else
-                player = Player.myseft; 
+            int y = BitConverter.ToInt32(data, 8);            
             
-
             int yum = BitConverter.ToInt32(data, 12);
             int fx = BitConverter.ToInt32(data, 16);
             int fy = BitConverter.ToInt32(data, 20); 
+
             if (yum == 1)
             {
-               // food = Food.searchFood(fx, fy, Form1.thisForm..Foods);
-               // Form1.thisForm.gameMap.Eat(food); 
+                newmove(true, food, fx, fy, id, x, y);   
+                //food = Food.searchFood(fx, fy, Form1.thisForm..Foods);
+                //Form1.thisForm.gameMap.Eat(food);
             }
             
         }

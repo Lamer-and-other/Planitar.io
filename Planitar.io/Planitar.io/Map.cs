@@ -178,7 +178,7 @@ namespace Planitar.io
                     }
                 }
 
-                Eat();
+               // Eat();
             }
             catch (Exception e)
             {
@@ -246,22 +246,22 @@ namespace Planitar.io
         //}
         
         // сервер         
-        public void Eat() 
+        public void Eat(Player player, Food food) 
         {
-            foreach (Food food in Foods)
-            {
-                Point center = new Point(food.Сollision.X + food.Сollision.Width / 2, food.Сollision.Y + food.Сollision.Height / 2);
-                if (food.Try_Eat(CurrentPlayer, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
-                {
-                    CurrentPlayer.ChangeSize((int)food.Bonus);
-                    Form1.thisForm.setBonusLable(food.Bonus.ToString()); 
-                   // food.Destruction(Randomer, MapRectangle);
-                   // return food;
-                }
-            }
-          
-            //CurrentPlayer.ChangeSize((int)food.Bonus);
-            //food.Destruction(food); 
+            //foreach (Food food in Foods)
+            //{
+            //    Point center = new Point(food.Сollision.X + food.Сollision.Width / 2, food.Сollision.Y + food.Сollision.Height / 2);
+            //    if (food.Try_Eat(CurrentPlayer, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
+            //    {
+            //        CurrentPlayer.ChangeSize((int)food.Bonus); 
+            //        Form1.thisForm.setBonusLable(food.Bonus.ToString()); 
+            //       // food.Destruction(Randomer, MapRectangle); 
+            //       // return food; 
+            //    }
+            //}
+
+            player.ChangeSize((int)food.Bonus);
+            food.Destruction(food); 
             // тут будет отправлятся запрос проверки на съеденость кружка 
         }
       
@@ -324,5 +324,17 @@ namespace Planitar.io
             return rec;
         }
 
+        public Player getPlayer(int id)
+        {
+            foreach (Player player in Map.Players)
+            {
+                if (player.id == id)
+                {
+                    return player;
+                }
+            }
+            return null;
+        }
+        
     }
 }

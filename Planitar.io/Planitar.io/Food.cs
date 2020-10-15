@@ -33,7 +33,7 @@ namespace Planitar.io
             Point centre_player = new Point(player.Сollision.X + player.Сollision.Width / 2, player.Сollision.Y + player.Сollision.Height / 2);
 
             if (Math.Pow((center_food.Y - centre_player.Y), 2) + Math.Pow((center_food.X - centre_player.X), 2) <= Math.Pow(player.Сollision.Width / 2, 2))
-                return true;
+                return true; 
             else
                 return false;
         }
