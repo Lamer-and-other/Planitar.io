@@ -29,9 +29,7 @@ namespace PlanitarioServer
         public static void AddPlayer(Player player)
         {
             player.Score = 10;
-            player.Record = 10;
-         
-            
+            player.Record = 10;                    
             Players.Add(player);
             player.Subscribe(globalPublisher);
         }

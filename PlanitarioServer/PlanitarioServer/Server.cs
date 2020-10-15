@@ -109,11 +109,16 @@ namespace PlanitarioServer
             servermeesage(getTime() + "Start exchange with client");
             do
             { 
-                int i;
-                byte[] buffer = new byte[10000];
-                while ((i = stream.Read(buffer, 0, buffer.Length)) != 0)
+                int size;
+                byte[] bSize = new byte[4]; 
+                byte[] buffer = null; 
+                while (true)
                 {
-                    
+                    stream.Read(bSize, 0, bSize.Length);
+                    size = BitConverter.ToInt32(bSize, 0);
+                    buffer = new byte[size]; 
+                    stream.Read(buffer, 0, buffer.Length); 
+
                     // получаем комманду 
                     string command = protocol.parseCommand(buffer);
                     servermeesage(getTime() + $"Client send command: {command}"); 
@@ -132,9 +137,9 @@ namespace PlanitarioServer
                     byte[] answer = protocol.getMethod(command)(protocol.parseData(buffer));
                     if (answer != null)
                     {
-                        byte[] size = BitConverter.GetBytes(answer.Length);
+                        byte[] sizeB = BitConverter.GetBytes(answer.Length);
                         // отправляем ответ клиету                   
-                        stream.Write(size, 0, size.Length);
+                        stream.Write(sizeB, 0, sizeB.Length);
                         stream.Write(answer, 0, answer.Length); 
                     }
                 }

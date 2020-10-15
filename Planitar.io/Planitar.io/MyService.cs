@@ -74,6 +74,7 @@ namespace Planitar.io
             byte[] ID = BitConverter.GetBytes(id);
             byte[] X = BitConverter.GetBytes(location.X);
             byte[] Y = BitConverter.GetBytes(location.Y);
+            
             byte[] request = command.Concat(ID.Concat(X.Concat(Y))).ToArray(); 
             canal.sendCommand(request);
         }
@@ -84,6 +85,7 @@ namespace Planitar.io
             byte[] request = command; 
             canal.sendCommand(request);
         }
+        
         // формирование и отправа комманды отключения от сервера 
         public void Disconnect()
         {

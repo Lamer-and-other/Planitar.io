@@ -43,7 +43,7 @@ namespace Planitar.io
             this.LostScoresOnStep = 0;
             this.Color = color; 
             this.PlusCoordinates = new Point(0, 0);
-          
+            Сollision = new Rectangle(0, 0, 0, 0); 
         }
 
         // инициализания других игроков 

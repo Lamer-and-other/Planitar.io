@@ -20,7 +20,7 @@ namespace PlanitarioServer
             protocol.addCommand("GETPLAYERS", ms.getPlayers);
             protocol.addCommand("DATANOTIFY", ms.notifyAboutChanges);
             protocol.addCommand("STARTGAME", ms.StartGame);
-          //  protocol.addCommand("GETNEWMOVE", ms.GetNewMove); 
+            protocol.addCommand("NEWMOVE", ms.GetNewMove); 
             //protocol.addCommand("CLOSE", ms.chekServer);
             return protocol;
         }

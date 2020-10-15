@@ -18,7 +18,7 @@ namespace PlanitarioServer
         
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
-        public long Score = 0;          // Счёт игрока
+        public int Score = 0;          // Счёт игрока
         public long Record = 0;           // Рекорд игрока
         public bool isAlive = false;                // жив ли игрок 
         public float MapScale = 0;         // Текущий масштаб карты

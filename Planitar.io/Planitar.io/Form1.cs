@@ -14,9 +14,9 @@ namespace Planitar.io
     delegate void identification(int id, string name);
     delegate void reName(string newName);
     delegate void reDrawing(int someData);
-    delegate void updataPlayerList();
+    delegate void updataPlayerList(List<Player> players);
     delegate void InitialGame(int size, int x, int y);
-    delegate void NewMove(bool eat, Food food, int fx, int fy, int id, int x, int y); 
+    delegate void NewMove(bool eat, Food food, int fx, int fy, int id, int x, int y, int score); 
 
     public delegate void InvokePrintMessages(string m);
 
@@ -25,13 +25,13 @@ namespace Planitar.io
 
         public static Form1 thisForm;    // Ссылка на форму
         public static BufferedGraphics panelBuffer;
-        BufferedGraphicsContext panelContext;
+        BufferedGraphicsContext panelContext; 
         Graphics panelGraphics;
 
         public static Point globalCenter = new Point(0, 0); // Центр для отрисовки всех фигур
         public static Point myMouse = new Point(0, 0);      // Координаты мыши
 
-        Map gameMap = null;             // Карта игры
+        Map gameMap = new Map();             // Карта игры
 
         MyService ms = null;
         Canal canal = null; 
@@ -139,7 +139,7 @@ namespace Planitar.io
         {
             ms.connectToServer();
         }
-
+        
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
             NameBox.Text = NameBox.Text.Replace(" ", "_");
@@ -173,24 +173,24 @@ namespace Planitar.io
             {
                 this.NameBox.Text = Player.myseft.Nickname;
             }));
-            ms.getPlayers();
+            ms.getPlayers(); 
         }
         
         // кнопка "В бой" 
         private void actionButton_Click(object sender, EventArgs e)
         {
-            gameMap = new Map();
+           
             canal.map = gameMap; 
             ms.startGame(Player.myseft.id); 
             WellcomePanel.Visible = false;
-           
+            
         }
 
         public void initialGame(int size, int x, int y)
         {
             Random rand = new Random(); 
             int score = Player.myseft.Score;
-
+            
             Player.myseft.Сollision = new Rectangle(
                 globalCenter.X - (score * 10 / 2), 
                 globalCenter.Y - (score * 10 / 2), size * 10, size * 10);
@@ -204,24 +204,27 @@ namespace Planitar.io
             SetGlobalCenter();  // Определяем центр формы 
             DoubleBuffering();  // Устанавливаем двойнную буферизацию для панели 
             ChangeCenter();
+
+            
             
             BeginInvoke(new MethodInvoker(delegate
             {
                 T_MouseMove.Start();
             }));
-
+           
         }
 
 
-        void newMove(bool eat, Food food, int fx, int fy, int id, int x, int y)
+        void newMove(bool eat, Food food, int fx, int fy, int id, int x, int y, int score)
         {
-            Player player = gameMap.getPlayer(id);
-
+            gameMap.Players = Player.playerList;
+            Player player = null;
+            
             if (Player.myseft.id != id)
-                player = Player.getPlayer(id);
+                player = Player.getPlayer(id); 
             else
-                player = Player.myseft;
-
+                player = Player.myseft; 
+            
             
             if (eat == true)
             {
@@ -230,8 +233,8 @@ namespace Planitar.io
             }
 
             player.Сollision.X = x; 
-            player.Сollision.Y = y; 
-            
+            player.Сollision.Y = y;
+            player.Score = score; 
 
         }
         
@@ -245,13 +248,15 @@ namespace Planitar.io
         }       
         
         // обновление списка игроков 
-        public void updataPlayerList()
+        void updataPlayerList(List<Player> players)
         {            
             BeginInvoke(new MethodInvoker(delegate
             {
                 PlayerList.Items.Clear();
-                foreach (Player p in Player.playerList)
+                foreach (Player p in players)
+                {                    
                     PlayerList.Items.Add("id: " + p.id.ToString() + " - " + p.Nickname);
+                }
             }));          
         } 
         

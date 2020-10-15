@@ -30,6 +30,7 @@ namespace PlanitarioServer
             int sizeMessage = BitConverter.ToInt32(data, 0);
             string message = Encoding.Default.GetString(data, 4, sizeMessage);
 
+            
             //UpdataPublisher.publisher.notify(answer);
             byte[] command = buildCommand("GETSOMENICK");
             // формируем ответ 
@@ -38,6 +39,8 @@ namespace PlanitarioServer
             byte[] lanswerMessage = BitConverter.GetBytes(answerMessage.Length);
 
             byte[] answer = command.Concat(lanswerMessage.Concat(id.Concat(answerMessage))).ToArray();
+
+            Map.AddPlayer(myself);
             return answer;
         }
         // переименовка игрока на сервере   
@@ -53,7 +56,7 @@ namespace PlanitarioServer
             byte[] answer = command.Concat(lname.Concat(name)).ToArray();
             return answer; 
         }
-
+        
         // получение списка игроков 
         public byte[] getPlayers(byte[] data)
         {            
@@ -67,7 +70,7 @@ namespace PlanitarioServer
                 byte[] lname = BitConverter.GetBytes(name.Length);
                 answer = answer.Concat(id.Concat(lname.Concat(name))).ToArray(); 
             }
-            if(Map.Players.Count != 0)
+            if(Map.Players.Count != 0) 
                  Map.globalPublisher.notify(answer); 
             return null;
         }
@@ -76,7 +79,7 @@ namespace PlanitarioServer
         {
             int id = BitConverter.ToInt32(data, 0);
             Player player = Player.getPlayer(id); 
-            Map.AddPlayer(player);
+           
             
             /// записываекм данные о старте игры для игрока на сервер 
             //ID
@@ -85,7 +88,7 @@ namespace PlanitarioServer
             //разположение еды
             //размер еды
             //разположение ловушек 
-            //размер ловушек
+            //размер ловушек 
             byte[] command = buildCommand("DATASTART");  
             byte[] ID = BitConverter.GetBytes(id);
             // тут координаты получим из класса Map 
@@ -123,32 +126,43 @@ namespace PlanitarioServer
         {
             int id = BitConverter.ToInt32(data, 0);
             int x = BitConverter.ToInt32(data, 4);
-            int y = BitConverter.ToInt32(data, 8);
+            int y = BitConverter.ToInt32(data, 8); 
             
-            Player player = Player.getPlayer(id); 
+            Player player = Player.getPlayer(id);
+            
+
             player.Сollision.X = x;
             player.Сollision.Y = y;
 
             int yum = 0;
-            Food someFood = Map.Eat(player); 
-
-            if (someFood != null)
-            {               
-                yum = 1;
-            }
-
-            byte[] command = buildCommand("NOTIFYNEWMOVE"); 
-            byte[] boolByte = BitConverter.GetBytes(yum); 
-            byte[] FX = BitConverter.GetBytes(someFood.Сollision.X);
-            byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y); 
+            Food someFood = Map.Eat(player);
             
-            byte[] wholeAnswer = command.Concat(data.Concat(boolByte.Concat(FX.Concat(FY)))).ToArray(); 
+            
+            byte[] command = buildCommand("NOTIFYNEWMOVE");
+            byte[] boolByte = null;
+            byte[] wholeAnswer = null;
+            byte[] score = BitConverter.GetBytes(player.Score); 
+            if (someFood != null) 
+            {               
+                yum = 1; 
+                
+                boolByte = BitConverter.GetBytes(yum);
+                byte[] FX = BitConverter.GetBytes(someFood.Сollision.X); 
+                byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
+                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY))))).ToArray();             
+            }
+            else
+            {
+                yum = 0; 
+                boolByte = BitConverter.GetBytes(yum);
+                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte))).ToArray(); 
+            }
             Map.globalPublisher.notify(wholeAnswer);
             return null; 
         }
 
-
-
+        
+        
 
 
 

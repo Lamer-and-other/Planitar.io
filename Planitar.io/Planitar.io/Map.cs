@@ -13,8 +13,8 @@ namespace Planitar.io
         Random Randomer;
         Rectangle MapRectangle;
         //Player CurrentPlayer;
-        public static List<Player> Players;
-        public List<Food> Foods;
+        public List<Player> Players;
+        public List<Food> Foods; 
         public List<Trap> Traps;
         int LastId = 1;
         int ScaleBy = 0;
@@ -256,7 +256,7 @@ namespace Planitar.io
             //        CurrentPlayer.ChangeSize((int)food.Bonus); 
             //        Form1.thisForm.setBonusLable(food.Bonus.ToString()); 
             //       // food.Destruction(Randomer, MapRectangle); 
-            //       // return food; 
+            //       // return food;  
             //    }
             //}
 
@@ -282,7 +282,7 @@ namespace Planitar.io
             Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(CurrentPlayer.Color), CurrentPlayer.Сollision);
             
             Form1.panelBuffer.Graphics.DrawString(CurrentPlayer.Score.ToString(), font, Brushes.Green, CurrentPlayer.Сollision, stringFormat);
-
+            
             Form1.panelBuffer.Render();
         }
         public void ReSizer()
@@ -326,9 +326,9 @@ namespace Planitar.io
 
         public Player getPlayer(int id)
         {
-            foreach (Player player in Map.Players)
+            foreach (Player player in Players)
             {
-                if (player.id == id)
+                if (player.id == id) 
                 {
                     return player;
                 }
