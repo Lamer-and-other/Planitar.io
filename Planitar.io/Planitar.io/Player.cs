@@ -60,5 +60,16 @@ namespace Planitar.io
             Сollision.Height += x;
             Form1.thisForm.ChangeCenter(); 
         }
+        public static Player getPlayer(int id)
+        {
+            foreach (Player player in Player.playerList)
+            {
+                if (player.id == id)
+                {
+                    return player;
+                }
+            }
+            return null;
+        }
     }
 }

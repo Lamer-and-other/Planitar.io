@@ -13,9 +13,9 @@ namespace Planitar.io
         Random Randomer;
         Rectangle MapRectangle;
         //Player CurrentPlayer;
-        public static List<Player> Players; 
-        List<Food> Foods;
-        List<Trap> Traps;
+        public static List<Player> Players;
+        public List<Food> Foods;
+        public List<Trap> Traps;
         int LastId = 1;
         int ScaleBy = 0;
 
@@ -222,13 +222,13 @@ namespace Planitar.io
         
         public void AddFood(Point location, int bonus)
         {
-            Food f = new Food(location, MapRectangle, bonus);
+            Food f = new Food(location, Randomer, bonus);
             Foods.Add(f); 
         }
         
         public void AddTrap(Point location)
         {
-            Deceleration t = new Deceleration(location, MapRectangle);
+            Deceleration t = new Deceleration(location, MapRectangle); 
             Traps.Add(t);
         }
         
@@ -248,17 +248,20 @@ namespace Planitar.io
         // сервер         
         public void Eat() 
         {
-            // Метод сравнения какую пищу мы съели
             foreach (Food food in Foods)
             {
                 Point center = new Point(food.Сollision.X + food.Сollision.Width / 2, food.Сollision.Y + food.Сollision.Height / 2);
                 if (food.Try_Eat(CurrentPlayer, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
                 {
-                    CurrentPlayer.ChangeSize((int)food.Bonus); 
-                    food.Destruction(food);
-                    break;
+                    CurrentPlayer.ChangeSize((int)food.Bonus);
+                    Form1.thisForm.setBonusLable(food.Bonus.ToString()); 
+                   // food.Destruction(Randomer, MapRectangle);
+                   // return food;
                 }
-            } 
+            }
+          
+            //CurrentPlayer.ChangeSize((int)food.Bonus);
+            //food.Destruction(food); 
             // тут будет отправлятся запрос проверки на съеденость кружка 
         }
       

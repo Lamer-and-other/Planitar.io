@@ -15,7 +15,7 @@ namespace PlanitarioServer
     class Player
     {
         public static List<Player> playerList = new List<Player>();
-
+        
         public int id { set; get; }             // Ид игрока
         public string Nickname { set; get; }         // Ник игрока
         public long Score = 0;          // Счёт игрока

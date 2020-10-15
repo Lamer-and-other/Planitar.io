@@ -19,11 +19,8 @@ namespace Planitar.io
 
         public Food() { }
         
-        public Food(Point location, Rectangle MapRectangle, int bonus)
+        public Food(Point location, Random rand, int bonus)
         {
-            Random rand = new Random(); 
-            bonus = rand.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
-            // размеры коллайдера еды
             Сollision = new Rectangle(new Point(location.X, location.Y), new Size(bonus * 3 + 10, bonus * 3 + 10));
             color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
             this.bonus = bonus; 
@@ -46,11 +43,22 @@ namespace Planitar.io
             //bonus = rand.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
             //Сollision = new Rectangle(new Point(rand.Next(MapRectangle.X, MapRectangle.Width + MapRectangle.X), rand.Next(MapRectangle.Y, MapRectangle.Height + MapRectangle.Y)), new Size(bonus * 3 + 10, bonus * 3 + 10));
             //color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            Сollision = new Rectangle(new Point(food.Сollision.X, food.Сollision.Y), new Size(food.bonus * 3 + 10, food.bonus * 3 + 10)); 
         }
 
         public void Draw(Graphics g)
         {
             g.FillEllipse(new SolidBrush(color), Сollision);
+        }
+
+        public static Food searchFood(int x, int y, List<Food> foodList)
+        {
+            foreach(Food oneFood in foodList)
+            {
+                if (oneFood.Сollision.X == x && oneFood.Сollision.Y == y)
+                    return oneFood;
+            }
+            return null; 
         }
     }
 }

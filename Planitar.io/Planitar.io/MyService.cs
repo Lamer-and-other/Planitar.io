@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing; 
 
 namespace Planitar.io
 {
@@ -14,13 +15,14 @@ namespace Planitar.io
             this.canal = canal; 
         }
         public void SetDelegats(identification idt, reName rnm,
-            reDrawing reDraw, updataPlayerList upl, InitialGame ig)
+            reDrawing reDraw, updataPlayerList upl, InitialGame ig, NewMove nm)
         {
             canal.mySelfIndentity = idt;
             canal.reSetName = rnm;
             canal.reDraw = reDraw; 
             canal.updateplayerlist = upl;
-            canal.initialGame = ig; 
+            canal.initialGame = ig;
+            canal.newmove = nm; 
         }
         
         // формирование комманды 
@@ -64,6 +66,16 @@ namespace Planitar.io
             byte[] ID = BitConverter.GetBytes(id);
             byte[] request = command.Concat(ID).ToArray(); 
             canal.sendCommand(request); 
+        }
+
+        public void NewMove(int id, Point location)
+        {
+            byte[] command = buildCommand("NEWMOVE"); 
+            byte[] ID = BitConverter.GetBytes(id);
+            byte[] X = BitConverter.GetBytes(location.X);
+            byte[] Y = BitConverter.GetBytes(location.Y);
+            byte[] request = command.Concat(ID.Concat(X.Concat(Y))).ToArray(); 
+            canal.sendCommand(request);
         }
 
         public void chekNotify()

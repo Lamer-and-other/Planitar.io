@@ -119,8 +119,33 @@ namespace PlanitarioServer
             return answer; 
         }
 
+        public byte[] GetNewMove(byte[] data)
+        {
+            int id = BitConverter.ToInt32(data, 0);
+            int x = BitConverter.ToInt32(data, 4);
+            int y = BitConverter.ToInt32(data, 8);
+            
+            Player player = Player.getPlayer(id); 
+            player.Сollision.X = x;
+            player.Сollision.Y = y;
 
+            int yum = 0;
+            Food someFood = Map.Eat(player); 
 
+            if (someFood != null)
+            {               
+                yum = 1;
+            }
+
+            byte[] command = buildCommand("NOTIFYNEWMOVE"); 
+            byte[] boolByte = BitConverter.GetBytes(yum); 
+            byte[] FX = BitConverter.GetBytes(someFood.Сollision.X);
+            byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y); 
+            
+            byte[] wholeAnswer = command.Concat(data.Concat(boolByte.Concat(FX.Concat(FY)))).ToArray(); 
+            Map.globalPublisher.notify(wholeAnswer);
+            return null; 
+        }
 
 
 

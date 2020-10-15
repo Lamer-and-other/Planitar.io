@@ -41,6 +41,7 @@
             this.labelPersonalRecord = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.T_MouseMove = new System.Windows.Forms.Timer(this.components);
+            this.labelBONUS = new System.Windows.Forms.Label();
             this.WellcomePanel.SuspendLayout();
             this.testPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -133,6 +134,7 @@
             // 
             this.testPanel.Controls.Add(this.getPlayerByHandButton);
             this.testPanel.Controls.Add(this.chekNotifyButton);
+            this.testPanel.Controls.Add(this.labelBONUS);
             this.testPanel.Location = new System.Drawing.Point(13, 547);
             this.testPanel.Name = "testPanel";
             this.testPanel.Size = new System.Drawing.Size(1189, 43);
@@ -164,6 +166,15 @@
             // 
             this.T_MouseMove.Tick += new System.EventHandler(this.T_MouseMove_Tick);
             // 
+            // labelBONUS
+            // 
+            this.labelBONUS.AutoSize = true;
+            this.labelBONUS.Location = new System.Drawing.Point(403, 0);
+            this.labelBONUS.Name = "labelBONUS";
+            this.labelBONUS.Size = new System.Drawing.Size(35, 13);
+            this.labelBONUS.TabIndex = 6;
+            this.labelBONUS.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +189,7 @@
             this.WellcomePanel.ResumeLayout(false);
             this.WellcomePanel.PerformLayout();
             this.testPanel.ResumeLayout(false);
+            this.testPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -198,6 +210,7 @@
         private System.Windows.Forms.Label labelPersonalRecord;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer T_MouseMove;
+        private System.Windows.Forms.Label labelBONUS;
     }
 }
 

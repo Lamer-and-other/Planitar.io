@@ -16,7 +16,7 @@ namespace Planitar.io
     delegate void reDrawing(int someData);
     delegate void updataPlayerList();
     delegate void InitialGame(int size, int x, int y);
-    
+    delegate void NewMove();
 
     public delegate void InvokePrintMessages(string m);
 
@@ -33,8 +33,6 @@ namespace Planitar.io
 
         Map gameMap = null;             // Карта игры
 
-        
-
         MyService ms = null;
         Canal canal = null; 
         public Form1()
@@ -42,10 +40,17 @@ namespace Planitar.io
             InitializeComponent();
             canal = new Canal("127.0.0.1", 2020);
             ms = new MyService(canal); 
-            ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList, initialGame);          
+            ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList, initialGame, newMove);          
             thisForm = this;                        
             T_MouseMove.Interval = 1000 / 60;   
             
+        }
+        public void setBonusLable(string str)
+        {
+            BeginInvoke(new MethodInvoker(delegate
+            {
+                this.labelBONUS.Text = str; 
+            }));
         }
         public void SetGlobalCenter()
         {
@@ -59,11 +64,10 @@ namespace Planitar.io
             gameMap.MoveThisPlayer();
             
             // Каждый тик отрисовываем все по новой
-            DrawThis(); 
+            DrawThis();
 
-            ///
-            /// отправка данных о местоположении на сервер 
-            ///
+            // отправляем на сервер новые данные о местоположении игрока (для всех игроков) 
+           // ms.NewMove(gameMap.CurrentPlayer.id, new Point(gameMap.CurrentPlayer.Сollision.X, gameMap.CurrentPlayer.Сollision.Y));   
         }
         
         public void ChangeCenter()
@@ -208,6 +212,11 @@ namespace Planitar.io
 
         }
 
+
+        public void newMove()
+        {
+
+        }
         
         // пестовое изменение значения        
         public void setNewData(int someData)

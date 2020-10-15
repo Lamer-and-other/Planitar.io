@@ -19,7 +19,8 @@ namespace Planitar.io
             protocol.addCommand("GETCHANGEDNAME", c.newName);
             protocol.addCommand("GETPLAYERS", c.getPlayers); 
             protocol.addCommand("GET_CHANGED_DATA", c.newData);
-            protocol.addCommand("DATASTART", c.getStartGameData); 
+            protocol.addCommand("DATASTART", c.getStartGameData);
+            protocol.addCommand("NOTIFYNEWMOVE", c.getNewMove); 
             return protocol;
         }
         

@@ -9,7 +9,7 @@ namespace PlanitarioServer
 {
     class Map
     {
-        static Random Randomer;
+        static Random Randomer = new Random();
         static Rectangle MapRectangle;
         
         Size MapSize; 
@@ -21,7 +21,6 @@ namespace PlanitarioServer
         
         public static void Create()
         {
-            Randomer = new Random(); 
             MapRectangle = new Rectangle(0, 0, GameConst.MapSizeX, GameConst.MapSizeY);
             AddFood(); 
             AddTrap(); 
@@ -77,8 +76,8 @@ namespace PlanitarioServer
                 Traps.Add(t);
             }
         }
-        
-        public void Eat(Player player)
+
+        public static Food Eat(Player player)
         {
             // Метод сравнения какую пищу мы съели
             foreach (Food food in Foods)
@@ -87,10 +86,11 @@ namespace PlanitarioServer
                 if (food.Try_Eat(player, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
                 {
                     player.ChangeSize((int)food.Bonus);
-                    food.Destruction(Randomer, MapRectangle); 
-                    break;
+                    food.Destruction(Randomer, MapRectangle);
+                    return food;
                 }
             }
+            return null; 
         }
 
 
