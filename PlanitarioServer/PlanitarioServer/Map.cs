@@ -21,7 +21,7 @@ namespace PlanitarioServer
         
         public static void Create()
         {
-            MapRectangle = new Rectangle(0, 0, GameConst.MapSizeX, GameConst.MapSizeY);
+            MapRectangle = new Rectangle(0, 0, GameConst.MapSizeX, GameConst.MapSizeY); 
             AddFood(); 
             AddTrap(); 
         }
@@ -29,7 +29,8 @@ namespace PlanitarioServer
         public static void AddPlayer(Player player)
         {
             player.Score = 10;
-            player.Record = 10;                    
+            player.Record = 10;   
+                             
             Players.Add(player);
             player.Subscribe(globalPublisher);
         }

@@ -121,7 +121,7 @@ namespace PlanitarioServer
                 mySize.Concat((foodData.Concat(trapData))))))).ToArray(); 
             return answer; 
         }
-
+        
         public byte[] GetNewMove(byte[] data)
         {
             int id = BitConverter.ToInt32(data, 0);
@@ -130,7 +130,7 @@ namespace PlanitarioServer
             
             Player player = Player.getPlayer(id);
             
-
+            
             player.Сollision.X = x;
             player.Сollision.Y = y;
 
@@ -150,7 +150,7 @@ namespace PlanitarioServer
                 byte[] FX = BitConverter.GetBytes(someFood.Сollision.X); 
                 byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
                 wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY))))).ToArray();             
-            }
+            } 
             else
             {
                 yum = 0; 
@@ -162,10 +162,10 @@ namespace PlanitarioServer
         }
 
         
+
         
 
-
-
+        
 
         // тестовое уведомление об изменениях 
         public byte[] notifyAboutChanges(byte[] data)

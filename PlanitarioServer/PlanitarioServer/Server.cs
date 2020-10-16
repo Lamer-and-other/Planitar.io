@@ -118,7 +118,7 @@ namespace PlanitarioServer
                     size = BitConverter.ToInt32(bSize, 0);
                     buffer = new byte[size]; 
                     stream.Read(buffer, 0, buffer.Length); 
-
+                    
                     // получаем комманду 
                     string command = protocol.parseCommand(buffer);
                     servermeesage(getTime() + $"Client send command: {command}"); 

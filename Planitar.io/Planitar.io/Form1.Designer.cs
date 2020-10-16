@@ -38,10 +38,13 @@
             this.chekNotifyButton = new System.Windows.Forms.Button();
             this.PlayerList = new System.Windows.Forms.ListBox();
             this.testPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelBONUS = new System.Windows.Forms.Label();
             this.labelPersonalRecord = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.T_MouseMove = new System.Windows.Forms.Timer(this.components);
-            this.labelBONUS = new System.Windows.Forms.Label();
+            this.labelX = new System.Windows.Forms.Label();
+            this.labelY = new System.Windows.Forms.Label();
+            this.labelScore = new System.Windows.Forms.Label();
             this.WellcomePanel.SuspendLayout();
             this.testPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -77,7 +80,7 @@
             this.WellcomePanel.Controls.Add(this.labelChekNotifyLable);
             this.WellcomePanel.Location = new System.Drawing.Point(145, 128);
             this.WellcomePanel.Name = "WellcomePanel";
-            this.WellcomePanel.Size = new System.Drawing.Size(844, 355);
+            this.WellcomePanel.Size = new System.Drawing.Size(793, 355);
             this.WellcomePanel.TabIndex = 2;
             // 
             // labelName
@@ -125,9 +128,9 @@
             this.PlayerList.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PlayerList.FormattingEnabled = true;
             this.PlayerList.ItemHeight = 15;
-            this.PlayerList.Location = new System.Drawing.Point(1007, 10);
+            this.PlayerList.Location = new System.Drawing.Point(966, 10);
             this.PlayerList.Name = "PlayerList";
-            this.PlayerList.Size = new System.Drawing.Size(169, 259);
+            this.PlayerList.Size = new System.Drawing.Size(210, 259);
             this.PlayerList.TabIndex = 3;
             // 
             // testPanel
@@ -135,10 +138,22 @@
             this.testPanel.Controls.Add(this.getPlayerByHandButton);
             this.testPanel.Controls.Add(this.chekNotifyButton);
             this.testPanel.Controls.Add(this.labelBONUS);
+            this.testPanel.Controls.Add(this.labelX);
+            this.testPanel.Controls.Add(this.labelY);
+            this.testPanel.Controls.Add(this.labelScore);
             this.testPanel.Location = new System.Drawing.Point(13, 547);
             this.testPanel.Name = "testPanel";
             this.testPanel.Size = new System.Drawing.Size(1189, 43);
             this.testPanel.TabIndex = 4;
+            // 
+            // labelBONUS
+            // 
+            this.labelBONUS.AutoSize = true;
+            this.labelBONUS.Location = new System.Drawing.Point(403, 0);
+            this.labelBONUS.Name = "labelBONUS";
+            this.labelBONUS.Size = new System.Drawing.Size(35, 13);
+            this.labelBONUS.TabIndex = 6;
+            this.labelBONUS.Text = "label1";
             // 
             // labelPersonalRecord
             // 
@@ -166,14 +181,32 @@
             // 
             this.T_MouseMove.Tick += new System.EventHandler(this.T_MouseMove_Tick);
             // 
-            // labelBONUS
+            // labelX
             // 
-            this.labelBONUS.AutoSize = true;
-            this.labelBONUS.Location = new System.Drawing.Point(403, 0);
-            this.labelBONUS.Name = "labelBONUS";
-            this.labelBONUS.Size = new System.Drawing.Size(35, 13);
-            this.labelBONUS.TabIndex = 6;
-            this.labelBONUS.Text = "label1";
+            this.labelX.AutoSize = true;
+            this.labelX.Location = new System.Drawing.Point(444, 0);
+            this.labelX.Name = "labelX";
+            this.labelX.Size = new System.Drawing.Size(35, 13);
+            this.labelX.TabIndex = 7;
+            this.labelX.Text = "label1";
+            // 
+            // labelY
+            // 
+            this.labelY.AutoSize = true;
+            this.labelY.Location = new System.Drawing.Point(485, 0);
+            this.labelY.Name = "labelY";
+            this.labelY.Size = new System.Drawing.Size(35, 13);
+            this.labelY.TabIndex = 8;
+            this.labelY.Text = "label2";
+            // 
+            // labelScore
+            // 
+            this.labelScore.AutoSize = true;
+            this.labelScore.Location = new System.Drawing.Point(526, 0);
+            this.labelScore.Name = "labelScore";
+            this.labelScore.Size = new System.Drawing.Size(35, 13);
+            this.labelScore.TabIndex = 9;
+            this.labelScore.Text = "label1";
             // 
             // Form1
             // 
@@ -211,6 +244,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer T_MouseMove;
         private System.Windows.Forms.Label labelBONUS;
+        private System.Windows.Forms.Label labelX;
+        private System.Windows.Forms.Label labelY;
+        private System.Windows.Forms.Label labelScore;
     }
 }
 

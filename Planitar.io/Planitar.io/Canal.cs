@@ -77,11 +77,11 @@ namespace Planitar.io
                     stream.Read(banswer, 0, banswer.Length); 
                     string answerCommand = protocol.parseCommand(banswer);
                     protocol.getMethod(answerCommand)(protocol.parseData(banswer));
-                    
+
                 //}
                 //catch (Exception ex)
                 //{
-                //    MessageBox.Show(ex.ToString()); 
+                //    MessageBox.Show(ex.ToString());
                 //}
             }
         }
@@ -106,33 +106,37 @@ namespace Planitar.io
         // расшифровуем получиный из сервера байтный список игроков 
         public void getPlayers(byte[] data)
         {
-            Player.playerList.Clear();
+            map.Players.Clear();
             List<Player> players = new List<Player>(); 
             int count = BitConverter.ToInt32(data, 0);
             int index = 4; 
             for(int i = 0; i < count; i++)
             {
-                int id = BitConverter.ToInt32(data, index);
+                int id = BitConverter.ToInt32(data, index); 
                 int sizeName = BitConverter.ToInt32(data, index + 4); 
-                string name = Encoding.Default.GetString(data, index + 8, sizeName); 
+                string name = Encoding.Default.GetString(data, index + 8, sizeName);  
                 Random rand = new Random(); 
-                Player newPlayer = new Player(id, name, Color.FromArgb(
-                    rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255))); 
+                Player newPlayer = new Player(id, name, Color.Yellow);
                 
-                Player.playerList.Add(newPlayer);
-                players.Add(newPlayer); 
+                if (id == Player.myseft.id)
+                    newPlayer.isMe = true; 
+                
+                map.Players.Add(newPlayer); 
+                //Player.playerList.Add(newPlayer); 
+
                 index += (8 + sizeName); 
             }
-            updateplayerlist(players); 
+             
+            updateplayerlist(map.Players); 
         }
         // получение стандартных данных старта игры для игрока   
         public void getStartGameData(byte[] data)
         {
             int id = BitConverter.ToInt32(data, 0);
             int positionX = BitConverter.ToInt32(data, 4);
-            int positionY = BitConverter.ToInt32(data, 8);
+            int positionY = BitConverter.ToInt32(data, 8); 
             int size = BitConverter.ToInt32(data, 12);
-
+            
             int index = 20; 
             
             int foodCount = BitConverter.ToInt32(data, 16);
@@ -154,7 +158,7 @@ namespace Planitar.io
             index += 4; 
             for(int i = 0; i < trapCount; i++)
             {
-                int tX = BitConverter.ToInt32(data, index);
+                int tX = BitConverter.ToInt32(data, index); 
                 int tY = BitConverter.ToInt32(data, index + 4);
                 trapPosition.Add(new Point(tX, tY));
                 map.AddTrap(new Point(tX, tY));   
@@ -173,7 +177,7 @@ namespace Planitar.io
             int score = BitConverter.ToInt32(data, 12);
             int yum = BitConverter.ToInt32(data, 16);
             
-
+          
             if (yum == 1)
             {
                 int fx = BitConverter.ToInt32(data, 20); 
@@ -184,7 +188,7 @@ namespace Planitar.io
             }
             if(yum == 0)
             {
-                newmove(false, food, 0, 0, id, x, y, score);
+                newmove(false, food, 0, 0, id, x, y, score); 
             }
         }
 

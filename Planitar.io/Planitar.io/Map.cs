@@ -12,15 +12,15 @@ namespace Planitar.io
     {
         Random Randomer;
         Rectangle MapRectangle;
-        //Player CurrentPlayer;
+   
         public List<Player> Players;
         public List<Food> Foods; 
         public List<Trap> Traps;
         int LastId = 1;
         int ScaleBy = 0;
-
+        
         Point StartMapCoordinates;
-
+        
         Font font = new Font("Comic Sans MS", 14, FontStyle.Bold, GraphicsUnit.Point);
 
         StringFormat stringFormat;
@@ -33,7 +33,7 @@ namespace Planitar.io
             SetScaleBy();
 
             Players = new List<Player>();
-            Foods = new List<Food>();
+            Foods = new List<Food>(); 
             Traps = new List<Trap>();
 
             Randomer = new Random();
@@ -68,6 +68,7 @@ namespace Planitar.io
             CurrentPlayer.Сollision.X = Form1.globalCenter.X - CurrentPlayer.Сollision.Width / 2;
             CurrentPlayer.Сollision.Y = Form1.globalCenter.Y - CurrentPlayer.Сollision.Height / 2;
         }
+        
         public void SetScaleBy()
         {
             // Выбираем кратчайшую границу для рассчёта скорости и масштаба
@@ -196,14 +197,17 @@ namespace Planitar.io
         public void ChangeCoordinates(int plus, bool _X = false, bool _Y = false)
         {
             // В этом методе перемещаем все фигуры
-            foreach (Player i in Players)
+            foreach (Player i in Players) 
             {
-                if (_X) i.Сollision.X += plus;
-                if (_Y) i.Сollision.Y += plus;
+                //if (i.isMe == false)
+                //{
+                    if (_X) i.Сollision.X += plus;
+                    if (_Y) i.Сollision.Y += plus;
+                //}
             }
             foreach (Food i in Foods)
             {
-                if (_X) i.Сollision.X += plus;
+                if (_X) i.Сollision.X += plus; 
                 if (_Y) i.Сollision.Y += plus;
             }
             foreach (Deceleration i in Traps)
@@ -264,7 +268,7 @@ namespace Planitar.io
             food.Destruction(food); 
             // тут будет отправлятся запрос проверки на съеденость кружка 
         }
-      
+        
         public void DrawIt()
         {
             // Метод для отрисвоки на форме 
@@ -273,12 +277,16 @@ namespace Planitar.io
             Form1.panelBuffer.Graphics.FillRectangle(Brushes.WhiteSmoke, MapRectangle);
             
             foreach (Player i in Players) 
-                Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.Color), i.Сollision);
-            foreach (Food i in Foods)
+            {                
+                if(i.isMe == false)
+                  Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.Color), i.Сollision);
+            }
+            
+            foreach (Food i in Foods) 
                 Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.color), i.Сollision);
             foreach (Deceleration i in Traps)
                 Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.color), i.Сollision);
-
+            
             Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(CurrentPlayer.Color), CurrentPlayer.Сollision);
             
             Form1.panelBuffer.Graphics.DrawString(CurrentPlayer.Score.ToString(), font, Brushes.Green, CurrentPlayer.Сollision, stringFormat);
@@ -294,7 +302,8 @@ namespace Planitar.io
             
             foreach (Player i in Players)
             {
-                i.Сollision = GetIt(cof, i.Сollision);
+                if(i.isMe == false) 
+                     i.Сollision = GetIt(cof, i.Сollision);
             }
             foreach (Food i in Foods)
             {
@@ -314,7 +323,7 @@ namespace Planitar.io
             newW = (int)(rec.Width * cof);
             newH = (int)(rec.Height * cof);
             newX = rec.X - (int)((newW) / 2) + Form1.globalCenter.X;
-            newY = rec.Y - (int)((newH) / 2) + Form1.globalCenter.Y;
+            newY = rec.Y - (int)((newH) / 2) + Form1.globalCenter.Y; 
 
             rec.Width = newW;
             rec.Height = newH;
@@ -335,6 +344,26 @@ namespace Planitar.io
             }
             return null;
         }
-        
+
+        // установка получиных новых координат врага 
+        public void setNewDrawData(int id, int x, int y, int score)
+        {
+            Random rand = new Random(); 
+            
+            foreach(Player player in Players)
+            {
+                if(player.id == id) 
+                {
+                    player.Сollision.X = x; 
+                    player.Сollision.Y = y;
+                    player.Сollision.Width = score * 3; 
+                    player.Сollision.Height = score * 3; 
+                    player.Score = score; 
+                    player.Color = Color.FromArgb(rand.Next(0, 255),
+                rand.Next(0, 255), rand.Next(0, 255));
+              
+                }
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Planitar.io
 
     public partial class Form1 : Form
     {
-
+        
         public static Form1 thisForm;    // Ссылка на форму
         public static BufferedGraphics panelBuffer;
         BufferedGraphicsContext panelContext; 
@@ -42,8 +42,8 @@ namespace Planitar.io
             ms = new MyService(canal); 
             ms.SetDelegats(selfIdentity, resetName, setNewData, updataPlayerList, initialGame, newMove);          
             thisForm = this;                        
-            T_MouseMove.Interval = 1000 / 60;  
-            
+            T_MouseMove.Interval = 1000 / 60;
+            canal.map = gameMap;
         }
         public void setBonusLable(string str)
         {
@@ -61,19 +61,19 @@ namespace Planitar.io
         private void T_MouseMove_Tick(object sender, EventArgs e)
         {
             // Каждый тик узнаем новые координаты мыши и перемещаем все вокруг игрока
-            gameMap.MoveThisPlayer();
+            gameMap.MoveThisPlayer(); 
             
-            // Каждый тик отрисовываем все по новой
+            // Каждый тик отрисовываем все по новой 
             DrawThis();
-
+            Player me = Player.getMyself(gameMap);   
             // отправляем на сервер новые данные о местоположении игрока (для всех игроков) 
-            ms.NewMove(gameMap.CurrentPlayer.id, new Point(gameMap.CurrentPlayer.Сollision.X, gameMap.CurrentPlayer.Сollision.Y));   
+            ms.NewMove(me.id, new Point(me.Сollision.X, me.Сollision.Y));    
         }
         
         public void ChangeCenter()
         {
             // Меняем центр относительно панели
-            gameMap.CenterPlayer(new Point(panel1.Width / 2, panel1.Height / 2));
+            gameMap.CenterPlayer(new Point(panel1.Width / 2, panel1.Height / 2)); 
         }
 
         private void panel_MouseMove(object sender, MouseEventArgs e)
@@ -157,6 +157,7 @@ namespace Planitar.io
         public void selfIdentity(int id, string name)
         {
             Player.myseft = new Player(id, name, Color.FromArgb(0,0,0));
+            Player.myseft.isMe = true; 
             Player.oldName = name;
             //BeginInvoke(new MethodInvoker(delegate 
             //{
@@ -190,17 +191,21 @@ namespace Planitar.io
         {
             Random rand = new Random(); 
             int score = Player.myseft.Score;
+            Player me = Player.getMyself(gameMap); 
             
-            Player.myseft.Сollision = new Rectangle(
-                globalCenter.X - (score * 10 / 2), 
-                globalCenter.Y - (score * 10 / 2), size * 10, size * 10);
+            Player.myseft.Сollision = new Rectangle(x, y, size * 10, size * 10);
             
             Player.myseft.Color = Color.FromArgb(rand.Next(0, 255), 
                 rand.Next(0, 255), rand.Next(0, 255)); 
             Player.myseft.Score = size;
-  
-
+            
+            me.Сollision = new Rectangle(x, y, size * 10, size * 10);
+            me.Color = Color.FromArgb(rand.Next(0, 255),
+                rand.Next(0, 255), rand.Next(0, 255));
+            me.Score = size; 
+            
             gameMap.CurrentPlayer = Player.myseft; 
+            
             SetGlobalCenter();  // Определяем центр формы 
             DoubleBuffering();  // Устанавливаем двойнную буферизацию для панели 
             ChangeCenter();
@@ -214,28 +219,23 @@ namespace Planitar.io
            
         }
 
-
+        
         void newMove(bool eat, Food food, int fx, int fy, int id, int x, int y, int score)
-        {
-            gameMap.Players = Player.playerList;
-            Player player = null;
+        {       
+            Player player = gameMap.getPlayer(id);
             
-            if (Player.myseft.id != id)
-                player = Player.getPlayer(id); 
-            else
-                player = Player.myseft; 
-            
+            if (Player.myseft.id != id) 
+            {             
+                gameMap.setNewDrawData(id, (x * -1), (y * -1), score); 
+            }
             
             if (eat == true)
             {
                 food = Food.searchFood(fx, fy, gameMap.Foods); 
                 gameMap.Eat(player, food);  
-            }
-
-            player.Сollision.X = x; 
-            player.Сollision.Y = y;
-            player.Score = score; 
-
+            } 
+            
+            updataPlayerList(gameMap.Players);  
         }
         
         // пестовое изменение значения        
@@ -247,17 +247,21 @@ namespace Planitar.io
             }));
         }       
         
+        
         // обновление списка игроков 
         void updataPlayerList(List<Player> players)
         {            
             BeginInvoke(new MethodInvoker(delegate
             {
-                PlayerList.Items.Clear();
-                foreach (Player p in players)
-                {                    
-                    PlayerList.Items.Add("id: " + p.id.ToString() + " - " + p.Nickname);
+                PlayerList.Items.Clear(); 
+                foreach (Player p in gameMap.Players) 
+                {                  
+                    
+                    PlayerList.Items.Add("id: " + p.id.ToString() + " - " + p.Nickname
+                        +  " " + " x: " + p.Сollision.X.ToString() + " y: " + p.Сollision.Y.ToString() + " " + (p.isMe == true ? "Me" : "Enemy"));
                 }
-            }));          
+            })); 
+            //gameMap.Players = Player.playerList;
         } 
         
         // при закрытии программы отправляется запрос об отсоединении на сервер 
