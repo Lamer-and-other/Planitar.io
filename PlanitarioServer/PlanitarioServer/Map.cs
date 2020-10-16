@@ -19,6 +19,7 @@ namespace PlanitarioServer
         // static потому что карта у нас будет одна и можно пока так оставить 
         public static Publisher globalPublisher = new Publisher();
         
+        
         public static void Create()
         {
             MapRectangle = new Rectangle(0, 0, GameConst.MapSizeX, GameConst.MapSizeY); 
@@ -29,8 +30,9 @@ namespace PlanitarioServer
         public static void AddPlayer(Player player)
         {
             player.Score = 10;
-            player.Record = 10;   
-                             
+            player.Record = 10;
+            player.Сollision.Width = player.Score * 10;
+            player.Сollision.Height = player.Score * 10; 
             Players.Add(player);
             player.Subscribe(globalPublisher);
         }
@@ -45,7 +47,7 @@ namespace PlanitarioServer
             // Метод добавления еды
             for (int i = 0; i < GameConst.FoodMaxOnMap; i++)
             {
-                Food f = new Food(Randomer, MapRectangle);
+                Food f = new Food(Randomer, MapRectangle, Foods.Count); 
                 Foods.Add(f);
             }
         }
@@ -84,8 +86,8 @@ namespace PlanitarioServer
                 Point center = new Point(food.Сollision.X + food.Сollision.Width / 2, food.Сollision.Y + food.Сollision.Height / 2);
                 if (food.Try_Eat(player, center)) // еда возвращает очки и меняет своё местоположение если мы попадаем в условие
                 {
-                    player.ChangeSize((int)food.Bonus);
-                    food.Destruction(Randomer, MapRectangle);
+                    player.ChangeSize((int)food.Bonus); 
+                    food.Destruction(Randomer, MapRectangle); 
                     return food;
                 }
             }

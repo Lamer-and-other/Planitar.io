@@ -16,7 +16,7 @@ namespace Planitar.io
     delegate void reDrawing(int someData);
     delegate void updataPlayerList(List<Player> players);
     delegate void InitialGame(int size, int x, int y);
-    delegate void NewMove(bool eat, Food food, int fx, int fy, int id, int x, int y, int score); 
+    delegate void NewMove(bool eat, int fooId, int fx, int fy, int id, int x, int y, int score); 
 
     public delegate void InvokePrintMessages(string m);
 
@@ -218,9 +218,9 @@ namespace Planitar.io
             }));
            
         }
-
         
-        void newMove(bool eat, Food food, int fx, int fy, int id, int x, int y, int score)
+        // новые координаты 
+        void newMove(bool eat, int foodId, int fx, int fy, int id, int x, int y, int score)
         {       
             Player player = gameMap.getPlayer(id);
             
@@ -231,8 +231,10 @@ namespace Planitar.io
             
             if (eat == true)
             {
-                food = Food.searchFood(fx, fy, gameMap.Foods); 
-                gameMap.Eat(player, food);  
+                //Food food = Food.searchFood(foodId, gameMap.Foods);   
+                //gameMap.Eat(player, food);
+                //gameMap.CurrentPlayer.Score = player.Score;
+                 
             } 
             
             updataPlayerList(gameMap.Players);  

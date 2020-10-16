@@ -15,7 +15,7 @@ namespace PlanitarioServer
         public static ulong PlayerMinScore = 10;       // Начальное количество очков у игрока 
 
         public static int FoodMaxBonus = 2;    // Максимальный бонус за еду
-        public static int FoodMinBonus = 0;    // Минимальный бонус за еду
+        public static int FoodMinBonus = 1;    // Минимальный бонус за еду
         public static int FoodMaxOnMap = 200;   // Максимальное количество еды на карте
 
         public static int TrapMaxSize = 3;     // Максимальный размер ловушки на карте

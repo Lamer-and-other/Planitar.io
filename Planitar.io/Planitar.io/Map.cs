@@ -13,7 +13,7 @@ namespace Planitar.io
         Random Randomer;
         Rectangle MapRectangle;
    
-        public List<Player> Players;
+        public List<Player> Players; 
         public List<Food> Foods; 
         public List<Trap> Traps;
         int LastId = 1;
@@ -224,9 +224,9 @@ namespace Planitar.io
             return (int)(x / (ScaleBy / GameConst.PlayerMaxSpeed)); ;
         }
         
-        public void AddFood(Point location, int bonus)
+        public void AddFood(Point location, int bonus, int id)
         {
-            Food f = new Food(location, Randomer, bonus);
+            Food f = new Food(location, Randomer, bonus, id);
             Foods.Add(f); 
         }
         
@@ -278,7 +278,7 @@ namespace Planitar.io
             
             foreach (Player i in Players) 
             {                
-                if(i.isMe == false)
+                if(i.isMe == false) 
                   Form1.panelBuffer.Graphics.FillEllipse(new SolidBrush(i.Color), i.Сollision);
             }
             

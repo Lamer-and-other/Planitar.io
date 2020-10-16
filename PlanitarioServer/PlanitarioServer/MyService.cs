@@ -103,8 +103,8 @@ namespace PlanitarioServer
                 byte[] foodPX = BitConverter.GetBytes(Map.Foods[i].Сollision.X); 
                 byte[] foodPY = BitConverter.GetBytes(Map.Foods[i].Сollision.Y); 
                 byte[] bonus = BitConverter.GetBytes(Map.Foods[i].Bonus);
-                
-                foodData = foodData.Concat(foodPX.Concat(foodPY.Concat(bonus))).ToArray();             
+                byte[] foodId = BitConverter.GetBytes(Map.Foods[i].id); 
+                foodData = foodData.Concat(foodPX.Concat(foodPY.Concat(bonus.Concat(foodId)))).ToArray();             
             }
             // получаем данные ^о ловушках  
             byte[] trapCount = BitConverter.GetBytes(Map.Traps.Count);
@@ -133,7 +133,7 @@ namespace PlanitarioServer
             
             player.Сollision.X = x;
             player.Сollision.Y = y;
-
+              
             int yum = 0;
             Food someFood = Map.Eat(player);
             
@@ -142,6 +142,7 @@ namespace PlanitarioServer
             byte[] boolByte = null;
             byte[] wholeAnswer = null;
             byte[] score = BitConverter.GetBytes(player.Score); 
+            
             if (someFood != null) 
             {               
                 yum = 1; 
@@ -149,7 +150,8 @@ namespace PlanitarioServer
                 boolByte = BitConverter.GetBytes(yum);
                 byte[] FX = BitConverter.GetBytes(someFood.Сollision.X); 
                 byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
-                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY))))).ToArray();             
+                byte[] foodId = BitConverter.GetBytes(someFood.id); 
+                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY.Concat(foodId)))))).ToArray();             
             } 
             else
             {

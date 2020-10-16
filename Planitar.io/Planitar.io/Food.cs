@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -13,17 +12,19 @@ namespace Planitar.io
 {
     class Food
     {
+        int id = 0; 
         int bonus;    // Сколько получит пользователь за эту еду; Размер еды зависит от бонуса
         public Rectangle Сollision; // коллайдер еды
         public Color color;
 
         public Food() { }
         
-        public Food(Point location, Random rand, int bonus)
+        public Food(Point location, Random rand, int bonus, int id)
         {
             Сollision = new Rectangle(new Point(location.X, location.Y), new Size(bonus * 3 + 10, bonus * 3 + 10));
             color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            this.bonus = bonus; 
+            this.bonus = bonus;
+            this.id = id; 
         }
         
         public int Bonus { get { return bonus; } }
@@ -51,11 +52,11 @@ namespace Planitar.io
             g.FillEllipse(new SolidBrush(color), Сollision);
         }
 
-        public static Food searchFood(int x, int y, List<Food> foodList)
+        public static Food searchFood(int id, List<Food> foodList)
         {
-            foreach(Food oneFood in foodList)
+            foreach(Food oneFood in foodList) 
             {
-                if (oneFood.Сollision.X == x && oneFood.Сollision.Y == y)
+                if (oneFood.id == id)
                     return oneFood;
             }
             return null; 
