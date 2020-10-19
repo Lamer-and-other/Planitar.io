@@ -1,0 +1,77 @@
+C:\Users\08881\source\repos\Planetario\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\08881\source\repos\Planetario\Planetario\bin\Debug\Planetario.exe
+C:\Users\08881\source\repos\Planetario\Planetario\bin\Debug\Planetario.pdb
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.csprojAssemblyReference.cache
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.csproj.GenerateResource.cache
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.csproj.CoreCompileInputs.cache
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.exe
+C:\Users\08881\source\repos\Planetario\Planetario\obj\Debug\Planetario.pdb
+C:\Users\pasha\Desktop\Planetario\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\pasha\Desktop\Planetario\Planetario\bin\Debug\Planetario.exe
+C:\Users\pasha\Desktop\Planetario\Planetario\bin\Debug\Planetario.pdb
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.csprojAssemblyReference.cache
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.csproj.GenerateResource.cache
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.csproj.CoreCompileInputs.cache
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.exe
+C:\Users\pasha\Desktop\Planetario\Planetario\obj\Debug\Planetario.pdb
+C:\Users\08881\Desktop\Planetario\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\08881\Desktop\Planetario\Planetario\bin\Debug\Planetario.exe
+C:\Users\08881\Desktop\Planetario\Planetario\bin\Debug\Planetario.pdb
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.csprojAssemblyReference.cache
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.csproj.GenerateResource.cache
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.csproj.CoreCompileInputs.cache
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.exe
+C:\Users\08881\Desktop\Planetario\Planetario\obj\Debug\Planetario.pdb
+C:\Users\pasha\Desktop\Planetario v3\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\pasha\Desktop\Planetario v3\Planetario\bin\Debug\Planetario.exe
+C:\Users\pasha\Desktop\Planetario v3\Planetario\bin\Debug\Planetario.pdb
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.csprojAssemblyReference.cache
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.csproj.GenerateResource.cache
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.csproj.CoreCompileInputs.cache
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.exe
+C:\Users\pasha\Desktop\Planetario v3\Planetario\obj\Debug\Planetario.pdb
+C:\Users\08881\Desktop\Planetario v4\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\08881\Desktop\Planetario v4\Planetario\bin\Debug\Planetario.exe
+C:\Users\08881\Desktop\Planetario v4\Planetario\bin\Debug\Planetario.pdb
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.csprojAssemblyReference.cache
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.csproj.GenerateResource.cache
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.csproj.CoreCompileInputs.cache
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.exe
+C:\Users\08881\Desktop\Planetario v4\Planetario\obj\Debug\Planetario.pdb
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.exe
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.pdb
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.pdb
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csprojResolveAssemblyReference.cache
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csproj.GenerateResource.Cache
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.exe
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.pdb
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.pdb
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csprojResolveAssemblyReference.cache
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\09408\Desktop\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csproj.GenerateResource.Cache
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe.config
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.exe
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.pdb
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.exe
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\bin\Debug\Planetario.pdb
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csprojResolveAssemblyReference.cache
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.MainForm.resources
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.Properties.Resources.resources
+C:\Users\Артем\Desktop\Planetario v4 (1)\Planetario v4\Planetario v4\Planetario v4\Planetario\obj\Debug\Planetario.csproj.GenerateResource.Cache
