@@ -83,7 +83,7 @@ namespace Planitar.io
                 //{
                 //    MessageBox.Show(ex.ToString());
                 //}
-             }
+            }
         }
         // получаем расшифрованые данные о себе для самоидентификации 
         public void getMyself(byte[] data)
@@ -147,10 +147,9 @@ namespace Planitar.io
                 int fX = BitConverter.ToInt32(data, index);
                 int fY = BitConverter.ToInt32(data, index + 4);
                 int bonus = BitConverter.ToInt32(data, index + 8); 
-                int foodId = BitConverter.ToInt32(data, index + 12); 
                 foodPosition.Add(new Point(fX, fY));
-                map.AddFood(new Point(fX, fY), bonus, foodId); 
-                index += 16;  
+                map.AddFood(new Point(fX, fY), bonus); 
+                index += 12;  
             }
             
             
@@ -171,6 +170,7 @@ namespace Planitar.io
 
         public void getNewMove(byte[] data)
         {
+            Food food = null; 
             int id = BitConverter.ToInt32(data, 0); 
             int x = BitConverter.ToInt32(data, 4);
             int y = BitConverter.ToInt32(data, 8);            
@@ -182,14 +182,13 @@ namespace Planitar.io
             {
                 int fx = BitConverter.ToInt32(data, 20); 
                 int fy = BitConverter.ToInt32(data, 24); 
-                int foodId = BitConverter.ToInt32(data, 28); 
-                newmove(true, foodId, fx, fy, id, x, y, score);   
+                newmove(true, food, fx, fy, id, x, y, score);   
                 //food = Food.searchFood(fx, fy, Form1.thisForm..Foods);
                 //Form1.thisForm.gameMap.Eat(food);
             }
             if(yum == 0)
             {
-                newmove(false, 0, 0, 0, id, x, y, score); 
+                newmove(false, food, 0, 0, id, x, y, score); 
             }
         }
 

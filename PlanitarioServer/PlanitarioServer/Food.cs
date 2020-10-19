@@ -9,18 +9,16 @@ namespace PlanitarioServer
 {
     class Food
     {
-        public int id = 0;
         int bonus;    // Сколько получит пользователь за эту еду; Размер еды зависит от бонуса
         public Rectangle Сollision; // коллайдер еды
         public Color color;
 
-        public Food(Random rand, Rectangle MapRectangle, int id)
+        public Food(Random rand, Rectangle MapRectangle)
         {
             bonus = rand.Next(GameConst.FoodMinBonus, GameConst.FoodMaxBonus + 1);
             // размеры коллайдера еды
             Сollision = new Rectangle(new Point(rand.Next(MapRectangle.X, MapRectangle.Width + MapRectangle.X), rand.Next(MapRectangle.Y, MapRectangle.Height + MapRectangle.Y)), new Size(bonus * 3 + 10, bonus * 3 + 10));
             color = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            this.id = id; 
         }
 
         public int Bonus { get { return bonus; } }

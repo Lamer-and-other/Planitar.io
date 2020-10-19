@@ -18,4 +18,3 @@ C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\b
 C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.exe
 C:\Users\10647.ITSTEP.000\Documents\GitHub\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.pdb
 C:\Users\10730.ITSTEP\Desktop\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csprojResolveAssemblyReference.cache
-E:\Файлы\Работа\Planitar.io\Planitar.io\Planitar.io\obj\Debug\Planitar.io.csprojResolveAssemblyReference.cache
