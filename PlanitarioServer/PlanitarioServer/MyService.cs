@@ -142,6 +142,7 @@ namespace PlanitarioServer
             byte[] boolByte = null;
             byte[] wholeAnswer = null;
             byte[] score = BitConverter.GetBytes(player.Score); 
+
             if (someFood != null) 
             {               
                 yum = 1; 
@@ -149,7 +150,12 @@ namespace PlanitarioServer
                 boolByte = BitConverter.GetBytes(yum);
                 byte[] FX = BitConverter.GetBytes(someFood.Сollision.X); 
                 byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
+
                 wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY))))).ToArray();             
+
+                byte[] foodId = BitConverter.GetBytes(someFood.id); 
+                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY.Concat(foodId)))))).ToArray();             
+
             } 
             else
             {
