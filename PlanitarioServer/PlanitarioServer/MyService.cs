@@ -141,18 +141,21 @@ namespace PlanitarioServer
             byte[] command = buildCommand("NOTIFYNEWMOVE");
             byte[] boolByte = null;
             byte[] wholeAnswer = null;
-            byte[] score = BitConverter.GetBytes(player.Score); 
+            byte[] score = BitConverter.GetBytes(player.Score);
             
-            if (someFood != null) 
-            {               
-                yum = 1; 
-                
+            if (someFood != null)
+            {
+                //yum = 1;
+
+                //boolByte = BitConverter.GetBytes(yum);
+                //byte[] FX = BitConverter.GetBytes(someFood.Сollision.X);
+                //byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
+                //byte[] foodId = BitConverter.GetBytes(someFood.id);
+                //wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY.Concat(foodId)))))).ToArray();
+                yum = 0;
                 boolByte = BitConverter.GetBytes(yum);
-                byte[] FX = BitConverter.GetBytes(someFood.Сollision.X); 
-                byte[] FY = BitConverter.GetBytes(someFood.Сollision.Y);
-                byte[] foodId = BitConverter.GetBytes(someFood.id); 
-                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte.Concat(FX.Concat(FY.Concat(foodId)))))).ToArray();             
-            } 
+                wholeAnswer = command.Concat(data.Concat(score.Concat(boolByte))).ToArray();
+            }
             else
             {
                 yum = 0; 
